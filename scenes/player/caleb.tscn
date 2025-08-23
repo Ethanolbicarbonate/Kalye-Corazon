@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://br7qkmw53wf1y"]
+[gd_scene load_steps=6 format=3 uid="uid://br7qkmw53wf1y"]
 
 [ext_resource type="Script" uid="uid://dchji7i7q822n" path="res://scripts/player/caleb_controller.gd" id="1_ij6vw"]
 [ext_resource type="Texture2D" uid="uid://bd555yux4xl1d" path="res://icon.svg" id="2_ghijl"]
+[ext_resource type="Script" uid="uid://bx614nir4t37t" path="res://scenes/player/HandheldCamera.gd" id="3_r0gjt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44cfe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r0gjt"]
+frequency = 0.2
+fractal_type = 0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_ij6vw")
@@ -23,3 +28,7 @@ limit_right = 1800
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+script = ExtResource("3_r0gjt")
+shake_speed = 2.0
+shake_strength = 10.0
+noise = SubResource("FastNoiseLite_r0gjt")
