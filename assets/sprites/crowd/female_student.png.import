@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt53xgr0crkc5"
-path="res://.godot/imported/lucheMoving.png-d795c4d9dde95fbb459df65083ed0da6.ctex"
+uid="uid://q4gbar6xta5f"
+path="res://.godot/imported/female_student.png-71948795366e37fd8f1f1b8891f0c1a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/caleb/lucheMoving.png"
-dest_files=["res://.godot/imported/lucheMoving.png-d795c4d9dde95fbb459df65083ed0da6.ctex"]
+source_file="res://assets/sprites/crowd/female_student.png"
+dest_files=["res://.godot/imported/female_student.png-71948795366e37fd8f1f1b8891f0c1a2.ctex"]
 
 [params]
 

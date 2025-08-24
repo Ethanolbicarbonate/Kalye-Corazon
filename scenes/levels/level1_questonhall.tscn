@@ -146,7 +146,6 @@ position = Vector2(-1716, 553)
 scale = Vector2(9.32, 149.04)
 script = ExtResource("5_echjx")
 target_position = Vector2(-1777, -225)
-prompt_text = "Go Upstairs [↑]"
 required_action = "ui_up"
 
 [node name="TransitionLeftGF" type="CollisionShape2D" parent="0/TransitionZones/GFLeft"]
@@ -159,7 +158,6 @@ position = Vector2(1674, -347)
 scale = Vector2(4.99999, 1)
 script = ExtResource("5_echjx")
 target_position = Vector2(1777, 645)
-prompt_text = "Go Downstairs  [↓]"
 required_action = "ui_down"
 
 [node name="TransitionRightUF" type="CollisionShape2D" parent="0/TransitionZones/UFRight"]
@@ -172,7 +170,6 @@ position = Vector2(1688, 476)
 scale = Vector2(2, 1)
 script = ExtResource("5_echjx")
 target_position = Vector2(1777, -225)
-prompt_text = "Go Upstairs [↑]"
 required_action = "ui_up"
 
 [node name="TransitionRightGF" type="CollisionShape2D" parent="0/TransitionZones/GFRight"]
@@ -184,7 +181,6 @@ shape = SubResource("RectangleShape2D_echjx")
 position = Vector2(-2082, -342)
 script = ExtResource("5_echjx")
 target_position = Vector2(-1777, 645)
-prompt_text = "Go Downstairs  [↓]"
 required_action = "ui_down"
 
 [node name="TransitionLeftUF" type="CollisionShape2D" parent="0/TransitionZones/UFLeft"]
@@ -231,6 +227,7 @@ texture = ExtResource("8_du45u")
 layer = 100
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="PostProcessLayer"]
+visible = false
 copy_mode = 2
 
 [node name="PixelOverlay" type="ColorRect" parent="PostProcessLayer"]
@@ -293,6 +290,7 @@ visibility_rect = Rect2(-2000, -100, 4000, 2450)
 process_material = SubResource("ParticleProcessMaterial_xmad2")
 
 [connection signal="body_entered" from="0/TransitionZones/GFLeft" to="0/TransitionZones/GFLeft" method="_on_body_entered"]
+[connection signal="body_exited" from="0/TransitionZones/GFLeft" to="0/TransitionZones/GFLeft" method="_on_body_exited"]
 [connection signal="body_entered" from="0/TransitionZones/UFRight" to="0/TransitionZones/UFRight" method="_on_body_entered"]
 [connection signal="body_exited" from="0/TransitionZones/UFRight" to="0/TransitionZones/UFRight" method="_on_body_exited"]
 [connection signal="body_entered" from="0/TransitionZones/GFRight" to="0/TransitionZones/GFRight" method="_on_body_entered"]

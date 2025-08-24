@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://br7qkmw53wf1y"]
+[gd_scene load_steps=26 format=3 uid="uid://br7qkmw53wf1y"]
 
 [ext_resource type="Script" uid="uid://dchji7i7q822n" path="res://scripts/player/caleb_controller.gd" id="1_ij6vw"]
-[ext_resource type="Texture2D" uid="uid://b4sbh0no2flcb" path="res://assets/sprites/characters/caleb/maluchemoving.png" id="3_hgqjy"]
+[ext_resource type="Texture2D" uid="uid://c26w0m6avutkk" path="res://assets/sprites/characters/caleb/caleb_walking.png" id="3_hgqjy"]
 [ext_resource type="Script" uid="uid://bx614nir4t37t" path="res://scripts/player/HandheldCamera.gd" id="3_r0gjt"]
 [ext_resource type="Texture2D" uid="uid://d14igjxhbtsjd" path="res://assets/sprites/characters/caleb/caleb_idle.png" id="4_70p8r"]
 
@@ -47,6 +47,38 @@ region = Rect2(2048, 0, 256, 512)
 atlas = ExtResource("4_70p8r")
 region = Rect2(2304, 0, 256, 512)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb6r4"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(0, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p7k2"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(256, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kkfl"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(512, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35m5j"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(768, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fputg"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(1024, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgh51"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(1280, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msjdb"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(1536, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x504q"]
+atlas = ExtResource("3_hgqjy")
+region = Rect2(1792, 0, 256, 512)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_1kkfl"]
 animations = [{
 "frames": [{
@@ -86,11 +118,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_hgqjy")
+"texture": SubResource("AtlasTexture_fb6r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p7k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kkfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35m5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fputg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgh51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msjdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x504q")
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r0gjt"]
@@ -108,7 +161,7 @@ shape = SubResource("RectangleShape2D_44cfe")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.320945, 0.314397)
 sprite_frames = SubResource("SpriteFrames_1kkfl")
-animation = &"idle"
+animation = &"move"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -113.233)

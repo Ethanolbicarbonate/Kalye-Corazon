@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4sbh0no2flcb"
-path="res://.godot/imported/maluchemoving.png-e910bbb83c4873b4acea5839d61d5d0d.ctex"
+uid="uid://c26w0m6avutkk"
+path="res://.godot/imported/caleb_walking.png-33053a11fd5d52e03570c5141ed59ec2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/caleb/maluchemoving.png"
-dest_files=["res://.godot/imported/maluchemoving.png-e910bbb83c4873b4acea5839d61d5d0d.ctex"]
+source_file="res://assets/sprites/characters/caleb/caleb_walking.png"
+dest_files=["res://.godot/imported/caleb_walking.png-33053a11fd5d52e03570c5141ed59ec2.ctex"]
 
 [params]
 

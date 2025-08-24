@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjpq5ejy67ven"
-path="res://.godot/imported/lucheIdle.png-5ff6a0902a1e2718685b43c4e6330d10.ctex"
+uid="uid://bh20ubx4edcng"
+path="res://.godot/imported/male_student.png-169de89b54e529e50331b9b25a2b2608.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/caleb/lucheIdle.png"
-dest_files=["res://.godot/imported/lucheIdle.png-5ff6a0902a1e2718685b43c4e6330d10.ctex"]
+source_file="res://assets/sprites/crowd/male_student.png"
+dest_files=["res://.godot/imported/male_student.png-169de89b54e529e50331b9b25a2b2608.ctex"]
 
 [params]
 
