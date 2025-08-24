@@ -20,17 +20,16 @@ size = Vector2(110, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmad2"]
 size = Vector2(20, 92.689)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjoat"]
+size = Vector2(53.4549, 4.51557)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tgic"]
-size = Vector2(162.661, 4.01906)
+size = Vector2(46.9099, 4.01906)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ahjd"]
-size = Vector2(38.9513, 26.4687)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_echjx"]
-size = Vector2(74.0306, 44.7173)
+size = Vector2(54.5122, 26.4687)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6m8n"]
-size = Vector2(35.678, 20)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yo2pw"]
 shader = ExtResource("9_xr5fd")
@@ -115,17 +114,17 @@ follow_viewport_enabled = true
 position = Vector2(11, 33)
 
 [node name="UpperFloor" type="CollisionShape2D" parent="0/Platforms"]
-position = Vector2(-28, -74)
-scale = Vector2(52.6796, 1.67604)
+position = Vector2(-28, -144)
+scale = Vector2(35.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="GroundFloor" type="CollisionShape2D" parent="0/Platforms"]
 position = Vector2(-28, 794)
-scale = Vector2(49.7996, 1.67604)
+scale = Vector2(35.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="CharacterBody2D" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-966, -240)
+position = Vector2(-950, -372)
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
 
@@ -141,56 +140,59 @@ shape = SubResource("RectangleShape2D_xmad2")
 
 [node name="TransitionZones" type="Node" parent="0"]
 
+[node name="GFRight" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
+position = Vector2(1696, 583)
+scale = Vector2(9.32, 149.04)
+script = ExtResource("5_echjx")
+target_position = Vector2(1777, -303)
+prompt_text = "Go Upstairs [↑]"
+required_action = "ui_up"
+
+[node name="TransitionRightGF" type="CollisionShape2D" parent="0/TransitionZones/GFRight"]
+position = Vector2(-0.107294, 0.120773)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mjoat")
+
 [node name="GFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
 position = Vector2(-1716, 553)
 scale = Vector2(9.32, 149.04)
 script = ExtResource("5_echjx")
-target_position = Vector2(-1777, -225)
+target_position = Vector2(-1716, -310)
 prompt_text = "Go Upstairs [↑]"
 required_action = "ui_up"
 
 [node name="TransitionLeftGF" type="CollisionShape2D" parent="0/TransitionZones/GFLeft"]
-position = Vector2(-33.3691, 0.221417)
+position = Vector2(2.36053, 0.221417)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1tgic")
 
 [node name="UFRight" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(1674, -347)
-scale = Vector2(4.99999, 1)
+position = Vector2(1680, -407)
 script = ExtResource("5_echjx")
 target_position = Vector2(1777, 645)
 prompt_text = "Go Downstairs  [↓]"
 required_action = "ui_down"
 
 [node name="TransitionRightUF" type="CollisionShape2D" parent="0/TransitionZones/UFRight"]
-position = Vector2(80.7001, 21)
+position = Vector2(13, 21)
 scale = Vector2(8.2, 18.52)
 shape = SubResource("RectangleShape2D_1ahjd")
 
-[node name="GFRight" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(1688, 476)
-scale = Vector2(2, 1)
-script = ExtResource("5_echjx")
-target_position = Vector2(1777, -225)
-prompt_text = "Go Upstairs [↑]"
-required_action = "ui_up"
-
-[node name="TransitionRightGF" type="CollisionShape2D" parent="0/TransitionZones/GFRight"]
-position = Vector2(152.75, 139.9)
-scale = Vector2(9.8, 11.32)
-shape = SubResource("RectangleShape2D_echjx")
-
 [node name="UFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(-2082, -342)
+position = Vector2(-1710, -400)
 script = ExtResource("5_echjx")
-target_position = Vector2(-1777, 645)
+target_position = Vector2(-1731, 630)
 prompt_text = "Go Downstairs  [↓]"
 required_action = "ui_down"
 
 [node name="TransitionLeftUF" type="CollisionShape2D" parent="0/TransitionZones/UFLeft"]
-position = Vector2(7, 0)
-scale = Vector2(44.6213, 34.0782)
+position = Vector2(-7.00049, -6.99997)
+scale = Vector2(22.12, 24.68)
 shape = SubResource("RectangleShape2D_m6m8n")
+
+[node name="Marker2D" type="Marker2D" parent="0/TransitionZones"]
+visible = false
+position = Vector2(1777, 645)
 
 [node name="1" type="CanvasLayer" parent="."]
 layer = 5
@@ -292,11 +294,11 @@ lifetime = 15.0
 visibility_rect = Rect2(-2000, -100, 4000, 2450)
 process_material = SubResource("ParticleProcessMaterial_xmad2")
 
+[connection signal="body_entered" from="0/TransitionZones/GFRight" to="0/TransitionZones/GFRight" method="_on_body_entered"]
+[connection signal="body_exited" from="0/TransitionZones/GFRight" to="0/TransitionZones/GFRight" method="_on_body_exited"]
 [connection signal="body_entered" from="0/TransitionZones/GFLeft" to="0/TransitionZones/GFLeft" method="_on_body_entered"]
 [connection signal="body_entered" from="0/TransitionZones/UFRight" to="0/TransitionZones/UFRight" method="_on_body_entered"]
 [connection signal="body_exited" from="0/TransitionZones/UFRight" to="0/TransitionZones/UFRight" method="_on_body_exited"]
-[connection signal="body_entered" from="0/TransitionZones/GFRight" to="0/TransitionZones/GFRight" method="_on_body_entered"]
-[connection signal="body_exited" from="0/TransitionZones/GFRight" to="0/TransitionZones/GFRight" method="_on_body_exited"]
 [connection signal="body_entered" from="0/TransitionZones/UFLeft" to="0/TransitionZones/UFLeft" method="_on_body_entered"]
 [connection signal="body_exited" from="0/TransitionZones/UFLeft" to="0/TransitionZones/UFLeft" method="_on_body_exited"]
 

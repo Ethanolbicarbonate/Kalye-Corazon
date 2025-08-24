@@ -21,12 +21,12 @@ void fragment() {
     // 4. Multiply back by pixel_size and divide by screen_resolution to convert the coordinate
     //    back into the 0-1 UV space.
     vec2 blocky_uv = floor(SCREEN_UV * screen_resolution / pixel_size) * pixel_size / screen_resolution;
-    
+
     // Sample the screen texture using this new, blocky UV coordinate.
     // Every pixel within the same "big pixel" block will now sample the same color,
     // creating the pixelation effect.
     vec4 screen_color = texture(SCREEN_TEXTURE, blocky_uv);
-    
+
     // Set the output color for this fragment.
     COLOR = screen_color;
 }

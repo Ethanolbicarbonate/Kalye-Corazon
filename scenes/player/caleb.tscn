@@ -1,34 +1,123 @@
-[gd_scene load_steps=6 format=3 uid="uid://br7qkmw53wf1y"]
+[gd_scene load_steps=18 format=3 uid="uid://br7qkmw53wf1y"]
 
 [ext_resource type="Script" uid="uid://dchji7i7q822n" path="res://scripts/player/caleb_controller.gd" id="1_ij6vw"]
-[ext_resource type="Texture2D" uid="uid://bd555yux4xl1d" path="res://icon.svg" id="2_ghijl"]
-[ext_resource type="Script" uid="uid://bx614nir4t37t" path="res://scenes/player/HandheldCamera.gd" id="3_r0gjt"]
+[ext_resource type="Texture2D" uid="uid://b4sbh0no2flcb" path="res://assets/sprites/characters/caleb/maluchemoving.png" id="3_hgqjy"]
+[ext_resource type="Script" uid="uid://bx614nir4t37t" path="res://scripts/player/HandheldCamera.gd" id="3_r0gjt"]
+[ext_resource type="Texture2D" uid="uid://d14igjxhbtsjd" path="res://assets/sprites/characters/caleb/caleb_idle.png" id="4_70p8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44cfe"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgqjy"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(256, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70p8r"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(0, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sygnb"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(512, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10cub"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(768, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2ye3"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(1024, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsnb6"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(1280, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd708"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(1536, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6oyv"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(1792, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xk4x"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(2048, 0, 256, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htme3"]
+atlas = ExtResource("4_70p8r")
+region = Rect2(2304, 0, 256, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1kkfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgqjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70p8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sygnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10cub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2ye3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsnb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd708")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6oyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xk4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htme3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hgqjy")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r0gjt"]
-frequency = 0.2
+frequency = 0.05
 fractal_type = 0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(1.41301, 1.41301)
 script = ExtResource("1_ij6vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(4.16, 8.2)
 shape = SubResource("RectangleShape2D_44cfe")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.612903, 1.24448)
-texture = ExtResource("2_ghijl")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.320945, 0.314397)
+sprite_frames = SubResource("SpriteFrames_1kkfl")
+animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -181)
+position = Vector2(0, -113.233)
 limit_left = -1800
 limit_right = 1800
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("3_r0gjt")
-shake_speed = 2.0
-shake_strength = 10.0
+shake_speed = 5.0
+shake_strength = 15.0
 noise = SubResource("FastNoiseLite_r0gjt")
