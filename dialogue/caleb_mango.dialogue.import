@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bacrcuah3adql"
+path="res://.godot/imported/caleb_mango.dialogue-c93adba88bd558634a57427b615b3e0f.tres"
+
+[deps]
+
+source_file="res://dialogue/caleb_mango.dialogue"
+dest_files=["res://.godot/imported/caleb_mango.dialogue-c93adba88bd558634a57427b615b3e0f.tres"]
+
+[params]
+
+defaults=true
