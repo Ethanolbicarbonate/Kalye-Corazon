@@ -1,0 +1,11 @@
+~ start
+Caleb: "It’s too much. I can’t keep up. I’m stuck."
+Caleb: "Another project due, another exam to cram for. This hallway feels like a tunnel with no end."
+[wait=.5]
+Caleb: "A cat? Here? It's... almost as if it's inviting me...."
+
+- Follow the cat.
+	Mango: "You picked the first one."
+- Resist the urge.
+	Everyready: "You picked the second one."
+=> END
