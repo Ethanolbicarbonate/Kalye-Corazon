@@ -114,5 +114,5 @@ func teleport_player():
 func _show_balloon_dialogue():
 	var balloon = load("res://dialogue/balloon.tscn").instantiate()
 	get_tree().current_scene.add_child(balloon)
-	balloon.start(load("res://dialogue/mainstart.dialogue"), "start")
+	balloon.start(load("res://dialogue/main.dialogue"), "start")
 	# balloon.start(load("res://dialogue/caleb_mango.dialogue"), "start")

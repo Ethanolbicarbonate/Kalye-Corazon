@@ -106,3 +106,32 @@ func teleport_player():
 	self.global_position = transition_data.target_position
 	is_in_transition = false
 	velocity.x = 0
+	
+# MANGO DIALOGUE SUPPORT
+
+var in_dialogue: bool = false
+var player: CharacterBody2D = null  # make sure this is set when player enters range
+
+func start_caleb_dialogue():
+	in_dialogue = true
+	velocity = Vector2.ZERO  # NPC stops
+
+	if player:
+		player.velocity = Vector2.ZERO          # Stop player movement
+		player.set_physics_process(false)       # Freeze controls
+		if player.has_node("Sprite2D"):         # Force idle animation
+			player.get_node("Sprite2D").play("idle")
+
+	# Load dialogue resource
+	var caleb_dialogue: DialogueResource = load("res://dialogue/caleb_mango.dialogue")
+	DialogueManager.start(caleb_dialogue)
+
+	# Connect once
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended, CONNECT_ONE_SHOT)
+
+
+func _on_dialogue_ended():
+	in_dialogue = false
+
+	if player:
+		player.set_physics_process(true)        # Resume movement
