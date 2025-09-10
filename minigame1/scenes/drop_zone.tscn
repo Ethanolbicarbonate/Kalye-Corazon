@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dms4ohuq022jb"]
+
+[ext_resource type="Script" uid="uid://bimvcnccn2tvo" path="res://scripts/levels/minigame1/drop_zone.gd" id="1_jkvqq"]
+
+[node name="drop_zone" type="Marker2D" groups=["zone"]]
+script = ExtResource("1_jkvqq")
