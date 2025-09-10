@@ -22,12 +22,11 @@ func _ready():
 	# Add the dialogue balloon to the scene
 	add_child(balloon)
 	
-	# --- Connect Signals ---
-	# 1. Connect the HallwayTrigger's body_entered signal to a function in this script.
-	
-	# 2. Connect to Dialogue Manager's global 'mutated' signal.
-	# This listens for the custom signal we added to our dialogue file.
 	DialogueManager.mutated.connect(_on_dialogue_mutated)
+	
+	if GameState.persevere_minigame_completed:
+		$MinigameTrigger.get_child(0).call_deferred("set_disabled", true) # Disables the collision shape
+		$MinigameTrigger.monitoring = false # Stops the Area2D from checking for bodies
 
 
 # This function is called when any physics body enters the HallwayTrigger area.
@@ -55,14 +54,29 @@ func _on_dialogue_mutated(data: Dictionary):
 		
 		# Update our state variable.
 		cat_is_following = true
-		
-		# Now, tell the cat to start its following behavior.
-		# This will call a function named 'start_following' on the cat's script,
-		# which we will create in the next step.
+	
 		if cat and cat.has_method("start_following"):
 			cat.start_following(player)
+	elif data.get("mutation") == "start_minigame":
+		print("WORKAROUND 1: Mutation triggered scene change")
+		get_tree().change_scene_to_file("res://scenes/minigames/minigame_persevere.tscn")
 
 func start_cat_dialogue():
 	# This is called by the cat script when it's time for the second dialogue.
 	balloon.show() # Make sure it's visible first
 	balloon.start(dialogue_res, "cat_encounter")
+
+
+func _on_minigame_trigger_body_entered(body):
+	# Check if it's the player
+	if body != player:
+		return
+
+	# Show the dialogue for the minigame
+	balloon.show()
+	balloon.start(dialogue_res, "paper_minigame_start")
+
+	# Disable the trigger safely.
+	$MinigameTrigger.get_child(0).call_deferred("set_disabled", true)
+	# FIX #2: Use call_deferred to change monitoring safely.
+	$MinigameTrigger.call_deferred("set_monitoring", false)

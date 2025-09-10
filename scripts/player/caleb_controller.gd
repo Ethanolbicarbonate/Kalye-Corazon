@@ -35,7 +35,6 @@ func on_player_exited_transition_zone():
 
 func _physics_process(delta):
 	# NEW: Add this print statement to see the state
-	print("is_in_transition: ", is_in_transition)
 
 	if is_in_transition:
 		return
@@ -51,7 +50,6 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
 	# NEW: Add this print statement to see your input
-	print("Direction input: ", direction)
 	
 	if direction != 0:
 		velocity.x = direction * SPEED

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://20l8s8unujh4"]
+[gd_scene load_steps=32 format=3 uid="uid://20l8s8unujh4"]
 
 [ext_resource type="Script" uid="uid://b273fa3c4vnys" path="res://scenes/levels/level_1_questonhall.gd" id="1_1tgic"]
 [ext_resource type="Texture2D" uid="uid://c6wvj7fcocsmy" path="res://assets/sprites/environment/queston_hall/qh sky.png" id="1_xqwct"]
@@ -15,6 +15,9 @@
 [ext_resource type="Shader" uid="uid://fwaomjnv67q4" path="res://scenes/effects/blur.gdshader" id="10_ssf6e"]
 [ext_resource type="Texture2D" uid="uid://6m2mdrk3p7ww" path="res://assets/sprites/effects/particles/orb_particle.png" id="11_da0tw"]
 [ext_resource type="Texture2D" uid="uid://bpt112ctewjsv" path="res://assets/sprites/effects/particles/falling_leaves.png" id="12_xmad2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssf6e"]
+size = Vector2(13.253, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_du45u"]
 size = Vector2(254, 384)
@@ -118,6 +121,15 @@ follow_viewport_scale = 0.95
 [node name="Qh2" type="Sprite2D" parent="-1"]
 texture = ExtResource("3_xmad2")
 
+[node name="MinigameTrigger" type="Area2D" parent="."]
+position = Vector2(921, -308)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinigameTrigger"]
+position = Vector2(48, 0)
+scale = Vector2(9.96, 23.64)
+shape = SubResource("RectangleShape2D_ssf6e")
+
 [node name="HallwayTrigger" type="Area2D" parent="."]
 position = Vector2(-316, -329)
 collision_mask = 2
@@ -143,7 +155,7 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-948, -306)
+position = Vector2(-948, -230)
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
 collision_mask = 0
@@ -212,9 +224,7 @@ shape = SubResource("RectangleShape2D_m6m8n")
 
 [node name="Cat" parent="0" instance=ExtResource("7_1ahjd")]
 z_index = 1
-position = Vector2(869, -298)
-collision_layer = 4
-collision_mask = 5
+position = Vector2(-508, -260)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="0"]
 position = Vector2(0, 18)
@@ -327,6 +337,7 @@ lifetime = 15.0
 visibility_rect = Rect2(-2000, -100, 4000, 2450)
 process_material = SubResource("ParticleProcessMaterial_xmad2")
 
+[connection signal="body_entered" from="MinigameTrigger" to="." method="_on_minigame_trigger_body_entered"]
 [connection signal="body_entered" from="HallwayTrigger" to="." method="_on_hallway_trigger_body_entered"]
 [connection signal="body_entered" from="0/TransitionZones/GFLeft" to="0/TransitionZones/GFLeft" method="_on_body_entered"]
 [connection signal="body_exited" from="0/TransitionZones/GFLeft" to="0/TransitionZones/GFLeft" method="_on_body_exited"]

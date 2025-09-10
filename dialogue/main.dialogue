@@ -12,3 +12,10 @@ Caleb: "A cat? Here? It's... almost as if it's inviting me...."
 - Resist the urge.
 	Everyready: "Meow!"
 => END
+
+
+~ paper_minigame_start
+Caleb: "Why are these papers scattered all over the floor? They have letters on them..."
+Caleb: "Maybe I should try to arrange them."
+do DialogueManager.mutated.emit({"mutation": "start_minigame"})
+=> END

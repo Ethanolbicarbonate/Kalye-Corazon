@@ -111,6 +111,8 @@ size = Vector2(150, 122)
 radius = 274.658
 
 [node name="Cat" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_3250y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -123,6 +125,7 @@ position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_3250y")
 
 [node name="EncounterArea" type="Area2D" parent="."]
+collision_layer = 6
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
