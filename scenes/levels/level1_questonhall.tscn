@@ -211,7 +211,7 @@ scale = Vector2(9.8, 11.32)
 shape = SubResource("RectangleShape2D_echjx")
 
 [node name="UFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(-2082, -342)
+position = Vector2(-2697, -342)
 collision_mask = 2
 script = ExtResource("5_echjx")
 target_position = Vector2(-1777, 645)
@@ -224,7 +224,7 @@ shape = SubResource("RectangleShape2D_m6m8n")
 
 [node name="Cat" parent="0" instance=ExtResource("7_1ahjd")]
 z_index = 1
-position = Vector2(-508, -260)
+position = Vector2(-56, 689)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="0"]
 position = Vector2(0, 18)

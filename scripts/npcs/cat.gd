@@ -148,10 +148,12 @@ func reposition_in_front():
 # --- Signal Handling ---
 
 func _on_encounter_area_body_entered(body):
-	var level_script = get_owner()
-
-	if body is CharacterBody2D and level_script.cat_can_be_encountered:
-		if level_script.has_method("start_cat_dialogue"):
+	# We only need to check if the body that entered is the player.
+	# We no longer need to check the 'cat_can_be_encountered' flag.
+	if body.is_in_group("Player"): # It's slightly better practice to check for a group.
+		var level_script = get_owner()
+		if level_script and level_script.has_method("start_cat_dialogue"):
 			level_script.start_cat_dialogue()
 		
+		# Disable the encounter area so it only happens once.
 		encounter_area.get_child(0).call_deferred("set_disabled", true)
