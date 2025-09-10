@@ -1,22 +1,68 @@
+# level_1_questonhall.gd
+
 extends Node2D
 
+# --- Node References ---
+# We need references to the player and the cat to coordinate them.
+# We will assign these in the Godot Inspector.
+@export var player: CharacterBody2D
+@export var cat: CharacterBody2D
+
+# --- Dialogue Setup ---
 @onready var balloon = preload("res://dialogue/balloon.tscn").instantiate()
 var dialogue_res = preload("res://dialogue/main.dialogue")
 
-var dialogue_started := false
+# --- State Variables ---
+# These variables track the progress of the quest/interaction.
+var cat_can_be_encountered: bool = false
+var cat_is_following: bool = false
+
 
 func _ready():
+	# Add the dialogue balloon to the scene
 	add_child(balloon)
+	
+	# --- Connect Signals ---
+	# 1. Connect the HallwayTrigger's body_entered signal to a function in this script.
+	
+	# 2. Connect to Dialogue Manager's global 'mutated' signal.
+	# This listens for the custom signal we added to our dialogue file.
+	DialogueManager.mutated.connect(_on_dialogue_mutated)
 
-func _process(delta: float) -> void:
-	if not dialogue_started and is_player_moving():
-		dialogue_started = true
-		balloon.start(dialogue_res, "start") # replace "start" with actual title
+
+# This function is called when any physics body enters the HallwayTrigger area.
+func _on_hallway_trigger_body_entered(body):
+	# First, check if the body that entered is the player.
+	if body != player:
+		return
+	
+	# Start the first part of the dialogue.
+	balloon.start(dialogue_res, "hallway_thoughts")
+	
+	# Update the state to allow the next part of the interaction to happen.
+	cat_can_be_encountered = true
+	
+	# Disable the trigger's collision shape so it doesn't run again.
+	# We use 'call_deferred' to avoid errors during the physics process.
+	$HallwayTrigger/CollisionShape2D.call_deferred("set_disabled", true)
+
+
+# This function is called whenever DialogueManager.mutated.emit() is used.
+func _on_dialogue_mutated(data: Dictionary):
+	# Check if the mutation is the one we're looking for.
+	if data.get("mutation") == "follow_cat":
+		print("Player chose to follow the cat!") # For debugging
 		
+		# Update our state variable.
+		cat_is_following = true
+		
+		# Now, tell the cat to start its following behavior.
+		# This will call a function named 'start_following' on the cat's script,
+		# which we will create in the next step.
+		if cat and cat.has_method("start_following"):
+			cat.start_following(player)
 
-func is_player_moving() -> bool:
-	# Replace with your actual input movement check
-	return Input.is_action_pressed("ui_right") \
-		or Input.is_action_pressed("ui_left") \
-		or Input.is_action_pressed("ui_up") \
-		or Input.is_action_pressed("ui_down")
+func start_cat_dialogue():
+	# This is called by the cat script when it's time for the second dialogue.
+	balloon.show() # Make sure it's visible first
+	balloon.start(dialogue_res, "cat_encounter")

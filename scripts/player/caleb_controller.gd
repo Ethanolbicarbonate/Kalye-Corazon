@@ -1,4 +1,3 @@
-# Attach this script to your CharacterBody2D
 extends CharacterBody2D
 
 const SPEED = 200.0
@@ -11,11 +10,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var can_transition: bool = false
 var is_in_transition: bool = false
 var transition_data: Dictionary = {}
-
-# --- REMOVED ---
-# The old texture variables are no longer needed.
-# @export var idle_texture: Texture2D
-# @export var move_texture: Texture2D
 
 # --- UPDATED NODE REFERENCE ---
 # We now get the AnimatedSprite2D. It's good practice to rename the variable.
@@ -40,6 +34,9 @@ func on_player_exited_transition_zone():
 
 
 func _physics_process(delta):
+	# NEW: Add this print statement to see the state
+	print("is_in_transition: ", is_in_transition)
+
 	if is_in_transition:
 		return
 
@@ -51,8 +48,10 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# --- UPDATED ANIMATION LOGIC ---
 	var direction = Input.get_axis("ui_left", "ui_right")
+	
+	# NEW: Add this print statement to see your input
+	print("Direction input: ", direction)
 	
 	if direction != 0:
 		velocity.x = direction * SPEED

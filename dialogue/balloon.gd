@@ -32,7 +32,7 @@ var dialogue_line: DialogueLine:
 			apply_dialogue_line()
 		else:
 			# The dialogue has finished so close the balloon
-			queue_free()
+			hide()
 	get:
 		return dialogue_line
 
