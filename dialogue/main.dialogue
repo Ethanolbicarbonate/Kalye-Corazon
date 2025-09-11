@@ -1,0 +1,24 @@
+~ hallway_thoughts
+Caleb: "It’s too much. I can’t keep up. I’m stuck."
+Caleb: "Another project due, another exam to cram for. This hallway feels like a tunnel with no end."
+=> END
+
+
+~ cat_encounter
+Caleb: "A cat? Here? It's... almost as if it's inviting me...."
+- Follow the cat.
+	do DialogueManager.mutated.emit({"mutation": "follow_cat"})
+	Mango: "Meow"
+	Caleb: "I have a feeling that you placed those paper there, didn't you?"
+	Mango: "Meow"
+- Resist the urge.
+	Everyready: "Meow!"
+	Caleb: "You made that mess, didn't you?"
+=> END
+
+
+~ paper_minigame_start
+Caleb: "Why are these papers scattered all over the floor? They have letters on them..."
+Caleb: "Maybe I should try to arrange them."
+do DialogueManager.mutated.emit({"mutation": "start_minigame"})
+=> END
