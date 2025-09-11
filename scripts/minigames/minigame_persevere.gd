@@ -68,6 +68,7 @@ func check_for_win():
 
 func _on_button_pressed() -> void:
 	GameState.persevere_minigame_completed = true
+	GameState.player_return_position = Vector2(1230, -180)
 	# Now, transition back to the main level.
 	# IMPORTANT: Make sure this path is correct for your project!
 	get_tree().change_scene_to_file("res://scenes/levels/level1_questonhall.tscn")

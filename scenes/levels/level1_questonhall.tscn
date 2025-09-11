@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://20l8s8unujh4"]
 
-[ext_resource type="Script" uid="uid://b273fa3c4vnys" path="res://scenes/levels/level_1_questonhall.gd" id="1_1tgic"]
+[ext_resource type="Script" uid="uid://b273fa3c4vnys" path="res://scripts/levels/Level1_QuestonHall/level_1_questonhall.gd" id="1_1tgic"]
 [ext_resource type="Texture2D" uid="uid://c6wvj7fcocsmy" path="res://assets/sprites/environment/queston_hall/qh sky.png" id="1_xqwct"]
 [ext_resource type="Texture2D" uid="uid://dfowi7ppyrsdn" path="res://assets/sprites/environment/queston_hall/qh 1.png" id="2_da0tw"]
 [ext_resource type="Texture2D" uid="uid://db63p513utcf8" path="res://assets/sprites/environment/queston_hall/qh 2.png" id="3_xmad2"]
@@ -155,7 +155,7 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-948, -230)
+position = Vector2(-945, -195)
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
 collision_mask = 0
