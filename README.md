@@ -1,9 +1,3 @@
-Of course. A good README is essential for any project, acting as both a welcome mat for newcomers and a technical reference for the developer (you!). Based on everything we've built and discussed, I have a comprehensive understanding of your game's components.
-
-Here is a draft for a README file. You can copy and paste this into a `README.md` file in your project's root directory.
-
----
-
 # Kalye Corazon
 
 ![KalyeCorazon](logo.png) <!-- Replace with a nice screenshot of your game -->
