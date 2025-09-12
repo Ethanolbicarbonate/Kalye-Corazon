@@ -46,6 +46,10 @@ func _ready():
 			
 			# 4. Reset the variable so this doesn't happen every time we load.
 			GameState.player_return_position = null
+		if not GameState.persevere_minigame_dialogue_shown:
+			balloon.show() # Make sure the balloon is visible
+			balloon.start(dialogue_res, "paper_minigame_success")
+			GameState.persevere_minigame_dialogue_shown = true # Set the flag so it doesn't repeat.
 
 # This function is called whenever DialogueManager.mutated.emit() is used.
 func _on_dialogue_mutated(data: Dictionary):
