@@ -1,4 +1,3 @@
-# Kalye Corazon
 
 ![KalyeCorazon](logo.png) <!-- Replace with a nice screenshot of your game -->
 
