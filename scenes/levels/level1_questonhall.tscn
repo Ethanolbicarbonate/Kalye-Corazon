@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://20l8s8unujh4"]
+[gd_scene load_steps=34 format=3 uid="uid://20l8s8unujh4"]
 
 [ext_resource type="Script" uid="uid://b273fa3c4vnys" path="res://scripts/levels/Level1_QuestonHall/level_1_questonhall.gd" id="1_1tgic"]
 [ext_resource type="Texture2D" uid="uid://c6wvj7fcocsmy" path="res://assets/sprites/environment/queston_hall/qh sky.png" id="1_xqwct"]
@@ -11,10 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://hcj5p1abc26k" path="res://scenes/npcs/cat.tscn" id="7_1ahjd"]
 [ext_resource type="Texture2D" uid="uid://b78lpyj2df0sq" path="res://assets/sprites/environment/queston_hall/qh 5.png" id="7_m6m8n"]
 [ext_resource type="Texture2D" uid="uid://bpj28inu41tpj" path="res://assets/sprites/environment/queston_hall/qh 6.png" id="8_du45u"]
-[ext_resource type="Shader" uid="uid://c6kou3l8kfcpp" path="res://scenes/effects/pixel.gdshader" id="9_xr5fd"]
 [ext_resource type="Shader" uid="uid://fwaomjnv67q4" path="res://scenes/effects/blur.gdshader" id="10_ssf6e"]
 [ext_resource type="Texture2D" uid="uid://6m2mdrk3p7ww" path="res://assets/sprites/effects/particles/orb_particle.png" id="11_da0tw"]
+[ext_resource type="Script" uid="uid://c4qbcvxj5sane" path="res://scripts/crowd/crowd_spawner.gd" id="12_1ahjd"]
 [ext_resource type="Texture2D" uid="uid://bpt112ctewjsv" path="res://assets/sprites/effects/particles/falling_leaves.png" id="12_xmad2"]
+[ext_resource type="PackedScene" uid="uid://dtigk3glu13m4" path="res://scenes/crowd/crowd_walker_male.tscn" id="13_m6m8n"]
+[ext_resource type="PackedScene" uid="uid://bsat42hm3blb6" path="res://scenes/crowd/crowd_walker_female.tscn" id="14_du45u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssf6e"]
 size = Vector2(13.253, 20)
@@ -43,9 +45,8 @@ size = Vector2(35.678, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr5fd"]
 size = Vector2(20, 65)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yo2pw"]
-shader = ExtResource("9_xr5fd")
-shader_parameter/pixel_size = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oks2v"]
+size = Vector2(222.848, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6esln"]
 shader = ExtResource("10_ssf6e")
@@ -155,7 +156,7 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-945, -195)
+position = Vector2(-878, 615)
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
 collision_mask = 0
@@ -271,32 +272,42 @@ follow_viewport_scale = 1.4
 position = Vector2(0, -122.857)
 texture = ExtResource("8_du45u")
 
-[node name="PostProcessLayer" type="CanvasLayer" parent="."]
-layer = 100
+[node name="CrowdFront" type="CanvasLayer" parent="."]
+layer = 11
+follow_viewport_enabled = true
+follow_viewport_scale = 2.0
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="PostProcessLayer"]
-visible = false
-copy_mode = 2
+[node name="StaticBody2D" type="StaticBody2D" parent="CrowdFront"]
+position = Vector2(0, 973)
 
-[node name="PixelOverlay" type="ColorRect" parent="PostProcessLayer"]
-visible = false
-material = SubResource("ShaderMaterial_yo2pw")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1938.0
-offset_top = -1103.0
-offset_right = -1938.0
-offset_bottom = -1103.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.04, 2.12)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrowdFront/StaticBody2D"]
+scale = Vector2(26.1, 1)
+shape = SubResource("RectangleShape2D_oks2v")
+
+[node name="CrowdSpawner" type="Node2D" parent="CrowdFront"]
+position = Vector2(-989.5, 764.5)
+script = ExtResource("12_1ahjd")
+crowd_walker_scene = ExtResource("13_m6m8n")
+min_speed = 300.0
+max_speed = 400.0
+
+[node name="Timer" type="Timer" parent="CrowdFront/CrowdSpawner"]
+wait_time = 5.0
+autostart = true
+
+[node name="CrowdSpawner2" type="Node2D" parent="CrowdFront"]
+position = Vector2(-989.5, 764.5)
+script = ExtResource("12_1ahjd")
+crowd_walker_scene = ExtResource("14_du45u")
+min_speed = 300.0
+max_speed = 400.0
+
+[node name="Timer" type="Timer" parent="CrowdFront/CrowdSpawner2"]
+wait_time = 3.0
+autostart = true
 
 [node name="BackBlur" type="CanvasLayer" parent="."]
 layer = 3
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="BackBlur"]
-copy_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="BackBlur"]
 material = SubResource("ShaderMaterial_6esln")
