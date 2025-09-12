@@ -4,7 +4,7 @@ Here is a draft for a README file. You can copy and paste this into a `README.md
 
 ---
 
-# Kalye Corazon (Working Title)
+# Kalye Corazon
 
 ![KalyeCorazon](logo.png) <!-- Replace with a nice screenshot of your game -->
 
