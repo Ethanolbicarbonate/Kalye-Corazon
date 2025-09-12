@@ -123,7 +123,7 @@ follow_viewport_scale = 0.95
 texture = ExtResource("3_xmad2")
 
 [node name="MinigameTrigger" type="Area2D" parent="."]
-position = Vector2(921, -308)
+position = Vector2(1314, -308)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinigameTrigger"]
@@ -156,7 +156,7 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-878, 615)
+position = Vector2(-939, -203)
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
 collision_mask = 0
@@ -174,7 +174,7 @@ shape = SubResource("RectangleShape2D_xmad2")
 [node name="TransitionZones" type="Node" parent="0"]
 
 [node name="GFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(-1716, 553)
+position = Vector2(-2328, 553)
 scale = Vector2(9.32, 149.04)
 collision_mask = 2
 script = ExtResource("5_echjx")
@@ -186,7 +186,7 @@ position = Vector2(-33.3691, 0.221417)
 shape = SubResource("RectangleShape2D_1tgic")
 
 [node name="UFRight" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(1674, -347)
+position = Vector2(1819, -347)
 scale = Vector2(4.99999, 1)
 collision_mask = 2
 script = ExtResource("5_echjx")
@@ -199,7 +199,7 @@ scale = Vector2(8.2, 18.52)
 shape = SubResource("RectangleShape2D_1ahjd")
 
 [node name="GFRight" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(1688, 476)
+position = Vector2(1881, 476)
 scale = Vector2(2, 1)
 collision_mask = 2
 script = ExtResource("5_echjx")
@@ -296,6 +296,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="CrowdSpawner2" type="Node2D" parent="CrowdFront"]
+modulate = Color(0.314316, 0.314316, 0.314316, 1)
 position = Vector2(-989.5, 764.5)
 script = ExtResource("12_1ahjd")
 crowd_walker_scene = ExtResource("14_du45u")
@@ -305,6 +306,9 @@ max_speed = 400.0
 [node name="Timer" type="Timer" parent="CrowdFront/CrowdSpawner2"]
 wait_time = 3.0
 autostart = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CrowdFront"]
+color = Color(0.57377, 0.522104, 0.490105, 1)
 
 [node name="BackBlur" type="CanvasLayer" parent="."]
 layer = 3

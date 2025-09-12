@@ -18,7 +18,15 @@ var transition_data: Dictionary = {}
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-# ... (The _ready function and transition functions are the same) ...
+func set_input_enabled(is_enabled: bool):
+	# We reuse the 'is_in_transition' flag because it already stops movement.
+	# If input is NOT enabled, then we ARE in a transition/frozen state.
+	is_in_transition = not is_enabled
+
+	# As a safety measure, reset velocity when freezing the player.
+	if not is_enabled:
+		velocity = Vector2.ZERO
+
 func _ready():
 	for zone in get_tree().get_nodes_in_group("TransitionZones"):
 		zone.player_entered_zone.connect(on_player_entered_transition_zone)

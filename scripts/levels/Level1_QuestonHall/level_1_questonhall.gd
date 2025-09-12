@@ -36,13 +36,12 @@ func _ready():
 		
 		# 3. Check if a return position has been set by the minigame
 		if GameState.player_return_position != null:
-			# If so, move the player to that position instantly.
-			# Make sure the 'player' node is assigned in the Inspector!
 			if player:
 				player.global_position = GameState.player_return_position
+				player.set_input_enabled(true)
 				var camera = player.get_node_or_null("Camera2D")
 				if camera:
-					# Force the camera to snap to the player's new position instantly.
+					camera.zoom = Vector2.ONE 
 					camera.reset_smoothing()
 			
 			# 4. Reset the variable so this doesn't happen every time we load.
@@ -64,9 +63,24 @@ func _on_dialogue_mutated(data: Dictionary):
 		get_tree().change_scene_to_file("res://scenes/minigames/minigame_persevere.tscn")
 
 func start_cat_dialogue():
-	# This is called by the cat script when it's time for the second dialogue.
-	balloon.show() # Make sure it's visible first
+	var camera = player.get_node_or_null("Camera2D")
+	if camera:
+		var tween_in = create_tween()
+		tween_in.set_trans(Tween.TRANS_SINE)
+		tween_in.tween_property(camera, "zoom", Vector2(1.2, 1.2), 1.0)
+
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended_for_cat_zoom_out, CONNECT_ONE_SHOT)
+
+	balloon.show()
 	balloon.start(dialogue_res, "cat_encounter")
+
+func _on_dialogue_ended_for_cat_zoom_out(_resource: DialogueResource):
+	# The logic is now guaranteed to run at the right time.
+	var camera = player.get_node_or_null("Camera2D")
+	if camera:
+		var tween_out = create_tween()
+		tween_out.set_trans(Tween.TRANS_SINE)
+		tween_out.tween_property(camera, "zoom", Vector2.ONE, 0.5)
 
 func _on_hallway_trigger_body_entered(body):
 	if body != player:
@@ -79,6 +93,16 @@ func _on_minigame_trigger_body_entered(body):
 	# Check if it's the player
 	if body != player:
 		return
+	player.set_input_enabled(false)
+
+	var camera = player.get_node_or_null("Camera2D")
+	if camera:
+		# Create a new tween. It will play automatically.
+		var tween = create_tween()
+		# Use a smooth transition curve.
+		tween.set_trans(Tween.TRANS_SINE)
+		# Animate the camera's "zoom" property to a new Vector2 value over 1.0 second.
+		tween.tween_property(camera, "zoom", Vector2(1.2, 1.2), 1.0)
 
 	# Show the dialogue for the minigame
 	balloon.show()
@@ -86,5 +110,4 @@ func _on_minigame_trigger_body_entered(body):
 
 	# Disable the trigger safely.
 	$MinigameTrigger.get_child(0).call_deferred("set_disabled", true)
-	# FIX #2: Use call_deferred to change monitoring safely.
 	$MinigameTrigger.call_deferred("set_monitoring", false)

@@ -9,7 +9,7 @@ Caleb: "A cat? Here? It's... almost as if it's inviting me...."
 - Follow the cat.
 	do DialogueManager.mutated.emit({"mutation": "follow_cat"})
 	Mango: "Meow"
-	Caleb: "I have a feeling that you placed those paper there, didn't you?"
+	Caleb: "You placed those paper there, didn't you?"
 	Mango: "Meow"
 - Resist the urge.
 	Everyready: "Meow!"
