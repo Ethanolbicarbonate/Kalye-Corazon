@@ -23,9 +23,30 @@ func _ready():
 	
 	DialogueManager.mutated.connect(_on_dialogue_mutated)
 	
+	# Check if the minigame has been completed
 	if GameState.persevere_minigame_completed:
-		$MinigameTrigger.get_child(0).call_deferred("set_disabled", true) # Disables the collision shape
-		$MinigameTrigger.monitoring = false # Stops the Area2D from checking for bodies
+		
+		# 1. Disable the Minigame Trigger (this code already existed)
+		$MinigameTrigger.get_child(0).call_deferred("set_disabled", true)
+		$MinigameTrigger.call_deferred("set_monitoring", false)
+		
+		# 2. Disable the Hallway Trigger as requested
+		$HallwayTrigger.get_child(0).call_deferred("set_disabled", true)
+		$HallwayTrigger.call_deferred("set_monitoring", false)
+		
+		# 3. Check if a return position has been set by the minigame
+		if GameState.player_return_position != null:
+			# If so, move the player to that position instantly.
+			# Make sure the 'player' node is assigned in the Inspector!
+			if player:
+				player.global_position = GameState.player_return_position
+				var camera = player.get_node_or_null("Camera2D")
+				if camera:
+					# Force the camera to snap to the player's new position instantly.
+					camera.reset_smoothing()
+			
+			# 4. Reset the variable so this doesn't happen every time we load.
+			GameState.player_return_position = null
 
 # This function is called whenever DialogueManager.mutated.emit() is used.
 func _on_dialogue_mutated(data: Dictionary):
