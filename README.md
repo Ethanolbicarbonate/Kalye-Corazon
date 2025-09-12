@@ -30,4 +30,4 @@ Level1_QuestonHall
 
 
 ## Summary  
-By leveraging Godot’s node hierarchy, scene instancing, and signal system, Kalye Corazon achieves a scalable, maintainable, and efficient architecture. This ensures smooth gameplay while allowing room for growth in future updates.  
+Kalye Corazón is a narrative-driven simulation game developed in Godot, inspired by Ilonggo culture. Exploring themes of community, civic engagement, health, wellbeing, and environment, it follows Caleb, a CICT student battling academic burnout, whose healing is guided by the WVSU cats—Mango and Eveready. By leveraging Godot’s node hierarchy, scene instancing, and signal system, the game achieves a scalable, maintainable, and efficient architecture that ensures smooth gameplay while allowing room for future growth. 
