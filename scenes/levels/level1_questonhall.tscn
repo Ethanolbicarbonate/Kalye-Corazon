@@ -292,7 +292,7 @@ min_speed = 300.0
 max_speed = 400.0
 
 [node name="Timer" type="Timer" parent="CrowdFront/CrowdSpawner"]
-wait_time = 5.0
+wait_time = 5.758
 autostart = true
 
 [node name="CrowdSpawner2" type="Node2D" parent="CrowdFront"]
@@ -304,7 +304,7 @@ min_speed = 300.0
 max_speed = 400.0
 
 [node name="Timer" type="Timer" parent="CrowdFront/CrowdSpawner2"]
-wait_time = 3.0
+wait_time = 3.759
 autostart = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="CrowdFront"]
