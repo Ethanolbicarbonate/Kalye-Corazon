@@ -1,6 +1,5 @@
 # Kalye-Corazon
 GameOn
-Note: The updated files are in the `combinedVer` branch.
 
 ## Technical Architecture  
 
