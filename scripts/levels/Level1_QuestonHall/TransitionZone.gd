@@ -1,8 +1,14 @@
+# TransitionZone.gd (FINAL, CORRECTED VERSION for scene transitions)
 extends Area2D
 
 # We will set these values in the Godot Editor for each transition zone.
-@export var target_position: Vector2 = Vector2.ZERO # Where the player will teleport.
-@export var required_action: String = "ui_accept" # The input action to trigger the transition (e.g., "ui_up").
+@export var target_position: Vector2 = Vector2.ZERO # Where the player will teleport/spawn.
+@export var required_action: String = "ui_accept" # The input action to trigger the transition.
+
+# --- NEW: This variable defines the target scene path ---
+# If this is left empty, the TransitionZone will perform a local teleport.
+# If this is set to a scene path, the TransitionZone will trigger a scene change.
+@export_file("*.tscn") var target_scene_path: String = ""
 
 # This signal will be sent to the player when they enter the zone.
 signal player_entered_zone(transition_data: Dictionary)
@@ -11,16 +17,18 @@ signal player_exited_zone
 
 
 func _on_body_entered(body: Node2D) -> void:
-	# First, check if the body that entered is the player.
-	# The "Player" group should be added to Caleb.tscn.
 	if body.is_in_group("Player"):
 		var transition_data = {
 			"target_position": target_position,
 			"action": required_action,
-			# We also need to know which way the animation should go.
-			"exit_direction": 1 if body.global_position.x < global_position.x else -1 # 1 for right, -1 for left
+			"exit_direction": 1 if body.global_position.x < global_position.x else -1,
+			# --- CRITICAL FIX: Include the target_scene_path in the data ---
+			"target_scene": target_scene_path # This is what caleb_controller reads!
 		}
-		# Emit the signal with all the necessary info.
+		
+		# --- DEBUG PRINT (Temporary - you can remove this after confirming it works) ---
+		print("DEBUG TransitionZone: Player entered. Data: ", transition_data)
+		
 		player_entered_zone.emit(transition_data)
 
 

@@ -1,29 +1,21 @@
 extends CharacterBody2D
-
 const SPEED = 200.0
 const FRICTION = 0.1	
 var facing_direction: int = 1
-
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # --- TRANSITION STATE VARIABLES ---
 var can_transition: bool = false
 var is_in_transition: bool = false
 var transition_data: Dictionary = {}
+var scene_to_load_after_transition: String = ""
 
 # --- UPDATED NODE REFERENCE ---
-# We now get the AnimatedSprite2D. It's good practice to rename the variable.
-@onready var animated_sprite: AnimatedSprite2D = $Sprite2D # The node is still named "Sprite2D" in the tree
-# ---
-
+@onready var animated_sprite: AnimatedSprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func set_input_enabled(is_enabled: bool):
-	# We reuse the 'is_in_transition' flag because it already stops movement.
-	# If input is NOT enabled, then we ARE in a transition/frozen state.
 	is_in_transition = not is_enabled
-
-	# As a safety measure, reset velocity when freezing the player.
 	if not is_enabled:
 		velocity = Vector2.ZERO
 
@@ -35,18 +27,18 @@ func _ready():
 func on_player_entered_transition_zone(data: Dictionary):
 	can_transition = true
 	transition_data = data
+	
+	# --- DEBUG PRINT ---
+	print("DEBUG Controller: Received transition data: ", transition_data)
 
 func on_player_exited_transition_zone():
 	can_transition = false
 	transition_data = {}
 
-
 func _physics_process(delta):
-	# NEW: Add this print statement to see the state
-
 	if is_in_transition:
 		return
-
+		
 	if can_transition and Input.is_action_just_pressed(transition_data.action):
 		start_transition()
 		return
@@ -57,12 +49,9 @@ func _physics_process(delta):
 
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
-	# NEW: Add this print statement to see your input
-	
 	if direction != 0:
 		velocity.x = direction * SPEED
 		
-		# Only change animation if it's not already playing
 		if animated_sprite.animation != "move":
 			animated_sprite.play("move")
 			
@@ -73,18 +62,16 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, FRICTION)
 		
-		# Only change animation if it's not already playing
 		if animated_sprite.animation != "idle":
 			animated_sprite.play("idle")
 
-	# Sprite flipping logic (works the same for AnimatedSprite2D)
+	# Sprite flipping logic
 	if facing_direction > 0:
 		animated_sprite.flip_h = true
 	else:
 		animated_sprite.flip_h = false
-
+		
 	move_and_slide()
-
 
 func start_transition():
 	is_in_transition = true
@@ -94,20 +81,32 @@ func start_transition():
 	var exit_direction = transition_data.exit_direction
 	var exit_distance = 800.0
 	
-	# --- UPDATED TRANSITION ---
-	# Set animation to "move" for the transition walk-off
 	animated_sprite.play("move")
 	
 	if exit_direction > 0:
 		animated_sprite.flip_h = true
 	else:
 		animated_sprite.flip_h = false
-
+		
 	tween.tween_property(self, "global_position", global_position + Vector2(exit_distance * exit_direction, 0), 2.0).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(teleport_player)
 
-
 func teleport_player():
-	self.global_position = transition_data.target_position
-	is_in_transition = false
-	velocity.x = 0
+	# --- Check both methods: scene_to_load_after_transition (for level script) and transition_data (for TransitionZones) ---
+	if scene_to_load_after_transition != "":
+		print("DEBUG: Changing scene via level script to: ", scene_to_load_after_transition)
+		get_tree().change_scene_to_file(scene_to_load_after_transition)
+		scene_to_load_after_transition = "" # Reset for next use
+	elif transition_data.has("target_scene") and transition_data.target_scene != "":
+		print("DEBUG: Changing scene via TransitionZone to: ", transition_data.target_scene)
+		get_tree().change_scene_to_file(transition_data.target_scene)
+	else:
+		# Local teleport
+		print("DEBUG: Local teleport to: ", transition_data.target_position)
+		self.global_position = transition_data.target_position
+		is_in_transition = false
+		velocity.x = 0
+	
+	# Clear transition data
+	transition_data = {}
+	can_transition = false

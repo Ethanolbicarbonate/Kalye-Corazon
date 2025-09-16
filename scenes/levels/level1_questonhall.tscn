@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://20l8s8unujh4"]
+[gd_scene load_steps=35 format=3 uid="uid://20l8s8unujh4"]
 
 [ext_resource type="Script" uid="uid://b273fa3c4vnys" path="res://scripts/levels/Level1_QuestonHall/level_1_questonhall.gd" id="1_1tgic"]
 [ext_resource type="Texture2D" uid="uid://c6wvj7fcocsmy" path="res://assets/sprites/environment/queston_hall/qh sky.png" id="1_xqwct"]
@@ -44,6 +44,8 @@ size = Vector2(35.678, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr5fd"]
 size = Vector2(20, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wn6fv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oks2v"]
 size = Vector2(222.848, 64)
@@ -156,10 +158,11 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-1412, -229)
+position = Vector2(-997, -212)
+collision_mask = 3
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
-collision_mask = 0
+collision_layer = 2
 
 [node name="BoundaryLeft" type="CollisionShape2D" parent="0/Boundaries"]
 position = Vector2(-1917, 144.1)
@@ -174,12 +177,13 @@ shape = SubResource("RectangleShape2D_xmad2")
 [node name="TransitionZones" type="Node" parent="0"]
 
 [node name="GFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(-2328, 553)
+position = Vector2(-1894, 492)
 scale = Vector2(9.32, 149.04)
 collision_mask = 2
 script = ExtResource("5_echjx")
 target_position = Vector2(-1777, -225)
-required_action = "ui_up"
+required_action = "ui_left"
+target_scene_path = "uid://c3cis6klge4bj"
 
 [node name="TransitionLeftGF" type="CollisionShape2D" parent="0/TransitionZones/GFLeft"]
 position = Vector2(-33.3691, 0.221417)
@@ -212,6 +216,7 @@ scale = Vector2(9.8, 11.32)
 shape = SubResource("RectangleShape2D_echjx")
 
 [node name="UFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
+visible = false
 position = Vector2(-2697, -342)
 collision_mask = 2
 script = ExtResource("5_echjx")
@@ -236,6 +241,16 @@ collision_mask = 4
 position = Vector2(-106, -152)
 scale = Vector2(217.36, 1)
 shape = SubResource("RectangleShape2D_xr5fd")
+
+[node name="LevelExitTrigger" type="Area2D" parent="0"]
+position = Vector2(-1702, 552)
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="0/LevelExitTrigger"]
+position = Vector2(-483, -48)
+scale = Vector2(79.9444, 31.1598)
+shape = SubResource("RectangleShape2D_wn6fv")
 
 [node name="1" type="CanvasLayer" parent="."]
 layer = 5
@@ -362,5 +377,6 @@ process_material = SubResource("ParticleProcessMaterial_xmad2")
 [connection signal="body_exited" from="0/TransitionZones/GFRight" to="0/TransitionZones/GFRight" method="_on_body_exited"]
 [connection signal="body_entered" from="0/TransitionZones/UFLeft" to="0/TransitionZones/UFLeft" method="_on_body_entered"]
 [connection signal="body_exited" from="0/TransitionZones/UFLeft" to="0/TransitionZones/UFLeft" method="_on_body_exited"]
+[connection signal="body_entered" from="0/LevelExitTrigger" to="." method="_on_level_exit_trigger_body_entered"]
 
 [editable path="0/player"]
