@@ -156,7 +156,7 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-939, -203)
+position = Vector2(-1412, -229)
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
 collision_mask = 0
