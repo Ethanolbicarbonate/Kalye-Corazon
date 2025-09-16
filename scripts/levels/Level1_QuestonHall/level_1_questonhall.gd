@@ -16,6 +16,8 @@ var dialogue_res = preload("res://dialogue/main.dialogue")
 # These variables track the progress of the quest/interaction.
 var cat_is_following: bool = false
 
+# Track if the minigame has been completed 
+var minigame_completed: bool = false
 
 func _ready():
 	# Add the dialogue balloon to the scene
@@ -46,6 +48,10 @@ func _ready():
 			
 			# 4. Reset the variable so this doesn't happen every time we load.
 			GameState.player_return_position = null
+		if not GameState.persevere_minigame_dialogue_shown:
+			balloon.show() # Make sure the balloon is visible
+			balloon.start(dialogue_res, "paper_minigame_success")
+			GameState.persevere_minigame_dialogue_shown = true # Set the flag so it doesn't repeat.
 
 # This function is called whenever DialogueManager.mutated.emit() is used.
 func _on_dialogue_mutated(data: Dictionary):
@@ -90,10 +96,10 @@ func _on_hallway_trigger_body_entered(body):
 	$HallwayTrigger/CollisionShape2D.call_deferred("set_disabled", true)
 	
 func _on_minigame_trigger_body_entered(body):
-	# Check if it's the player
-	if body != player:
+	if body != player or minigame_completed: # prevent re-triggering if completed 
 		return
-	player.set_input_enabled(false)
+	player.set_input_enabled(false) # player blocked here 
+
 
 	var camera = player.get_node_or_null("Camera2D")
 	if camera:
@@ -111,3 +117,9 @@ func _on_minigame_trigger_body_entered(body):
 	# Disable the trigger safely.
 	$MinigameTrigger.get_child(0).call_deferred("set_disabled", true)
 	$MinigameTrigger.call_deferred("set_monitoring", false)
+	
+	# Call this after minigame ends 
+func _on_minigame_completed():
+	minigame_completed = true #  Mark minigame done 
+	$MinigameTrigger.get_child(0).set_disabled(true) # Remove blocking wall 
+	player.set_input_enabled(true) # Restore player movement
