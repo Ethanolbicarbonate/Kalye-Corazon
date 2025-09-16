@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6xg3c1l1ynpg"]
+[gd_scene load_steps=13 format=3 uid="uid://c6xg3c1l1ynpg"]
 
 [ext_resource type="Script" uid="uid://cfac73dv3fl5f" path="res://scripts/minigames/minigame_persevere.gd" id="1_1l20l"]
 [ext_resource type="Texture2D" uid="uid://bav2uwd8t8788" path="res://assets/sprites/minigames/minigame_persevere/floor.png" id="2_l37kl"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d1cntmhjv5ua4" path="res://assets/sprites/minigames/minigame_persevere/5.png" id="9_r3h4p"]
 [ext_resource type="Texture2D" uid="uid://s837x4whlwkg" path="res://assets/sprites/minigames/minigame_persevere/6.png" id="10_j6mna"]
 [ext_resource type="FontFile" uid="uid://t5il60al4iak" path="res://assets/fonts/VT323-Regular.ttf" id="11_hsreu"]
+[ext_resource type="AudioStream" uid="uid://djt64k1umb8q2" path="res://assets/bgm/bgm1_FamiliarPlaces.mp3" id="12_l37kl"]
 
 [node name="PersevereMinigame" type="Node2D"]
 script = ExtResource("1_1l20l")
@@ -145,6 +146,10 @@ scale = Vector2(0.0566172, 0.302551)
 theme_override_fonts/font = ExtResource("11_hsreu")
 theme_override_font_sizes/font_size = 55
 text = "padayon"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_l37kl")
+autoplay = true
 
 [connection signal="pressed" from="SuccessScreen/ColorRect/Panel/Button" to="." method="_on_button_pressed"]
 

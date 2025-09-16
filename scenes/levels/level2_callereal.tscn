@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c3cis6klge4bj"]
+[gd_scene load_steps=33 format=3 uid="uid://c3cis6klge4bj"]
 
 [ext_resource type="Script" uid="uid://qyubpgm5iabx" path="res://scripts/levels/Level2_CalleReal/level_2_callereal.gd" id="1_cropf"]
 [ext_resource type="Texture2D" uid="uid://q4scwarsywwo" path="res://assets/sprites/environment/calle_real/sky.png" id="2_oede4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Shader" uid="uid://fwaomjnv67q4" path="res://scenes/effects/blur.gdshader" id="15_bw77a"]
 [ext_resource type="Texture2D" uid="uid://6m2mdrk3p7ww" path="res://assets/sprites/effects/particles/orb_particle.png" id="16_d1mlx"]
 [ext_resource type="Texture2D" uid="uid://bpt112ctewjsv" path="res://assets/sprites/effects/particles/falling_leaves.png" id="17_sgc85"]
+[ext_resource type="AudioStream" uid="uid://djt64k1umb8q2" path="res://assets/bgm/bgm1_FamiliarPlaces.mp3" id="18_c4jp8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62nti"]
 size = Vector2(110, 20)
@@ -326,6 +327,10 @@ texture = ExtResource("17_sgc85")
 lifetime = 15.0
 visibility_rect = Rect2(-2000, -100, 4000, 2450)
 process_material = SubResource("ParticleProcessMaterial_xmad2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_c4jp8")
+autoplay = true
 
 [connection signal="body_entered" from="0/TransitionZones/GFLeft" to="0/TransitionZones/GFLeft" method="_on_body_entered"]
 [connection signal="body_exited" from="0/TransitionZones/GFLeft" to="0/TransitionZones/GFLeft" method="_on_body_exited"]

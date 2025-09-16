@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://20l8s8unujh4"]
+[gd_scene load_steps=37 format=3 uid="uid://20l8s8unujh4"]
 
 [ext_resource type="Script" uid="uid://b273fa3c4vnys" path="res://scripts/levels/Level1_QuestonHall/level_1_questonhall.gd" id="1_1tgic"]
 [ext_resource type="Texture2D" uid="uid://c6wvj7fcocsmy" path="res://assets/sprites/environment/queston_hall/qh sky.png" id="1_xqwct"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bpt112ctewjsv" path="res://assets/sprites/effects/particles/falling_leaves.png" id="12_xmad2"]
 [ext_resource type="PackedScene" uid="uid://dtigk3glu13m4" path="res://scenes/crowd/crowd_walker_male.tscn" id="13_m6m8n"]
 [ext_resource type="PackedScene" uid="uid://bsat42hm3blb6" path="res://scenes/crowd/crowd_walker_female.tscn" id="14_du45u"]
+[ext_resource type="AudioStream" uid="uid://djt64k1umb8q2" path="res://assets/bgm/bgm1_FamiliarPlaces.mp3" id="18_xr5fd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssf6e"]
 size = Vector2(13.253, 20)
@@ -96,6 +97,20 @@ turbulence_noise_speed_random = 0.72
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.02
 
+[sub_resource type="GDScript" id="GDScript_ssf6e"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Level1_QuestonHall" type="Node2D" node_paths=PackedStringArray("player", "cat")]
 script = ExtResource("1_1tgic")
 player = NodePath("0/player")
@@ -107,6 +122,10 @@ follow_viewport_enabled = true
 [node name="QhSky" type="Sprite2D" parent="-3"]
 texture = ExtResource("1_xqwct")
 
+[node name="QhSky2" type="Sprite2D" parent="-3"]
+position = Vector2(615, -21)
+texture = ExtResource("1_xqwct")
+
 [node name="-2" type="CanvasLayer" parent="."]
 layer = 2
 follow_viewport_enabled = true
@@ -114,6 +133,10 @@ follow_viewport_scale = 0.8
 
 [node name="Qh1" type="Sprite2D" parent="-2"]
 position = Vector2(50, 50)
+texture = ExtResource("2_da0tw")
+
+[node name="Qh2" type="Sprite2D" parent="-2"]
+position = Vector2(615, 50)
 texture = ExtResource("2_da0tw")
 
 [node name="-1" type="CanvasLayer" parent="."]
@@ -124,8 +147,14 @@ follow_viewport_scale = 0.95
 [node name="Qh2" type="Sprite2D" parent="-1"]
 texture = ExtResource("3_xmad2")
 
+[node name="Qh3" type="Sprite2D" parent="-1"]
+position = Vector2(1901.05, 6.31579)
+texture = ExtResource("3_xmad2")
+region_enabled = true
+region_rect = Rect2(2519, 0, 1321, 2160)
+
 [node name="MinigameTrigger" type="Area2D" parent="."]
-position = Vector2(1314, -308)
+position = Vector2(1111, -291)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinigameTrigger"]
@@ -134,7 +163,7 @@ scale = Vector2(9.96, 23.64)
 shape = SubResource("RectangleShape2D_ssf6e")
 
 [node name="HallwayTrigger" type="Area2D" parent="."]
-position = Vector2(-316, -329)
+position = Vector2(-39, -275)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HallwayTrigger"]
@@ -158,10 +187,11 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-997, -212)
+position = Vector2(-431, -179)
 collision_mask = 3
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
+position = Vector2(-445, 24)
 collision_layer = 2
 
 [node name="BoundaryLeft" type="CollisionShape2D" parent="0/Boundaries"]
@@ -170,7 +200,7 @@ scale = Vector2(8.16, 23.28)
 shape = SubResource("RectangleShape2D_xmad2")
 
 [node name="BoundaryRight" type="CollisionShape2D" parent="0/Boundaries"]
-position = Vector2(1934, 144.1)
+position = Vector2(2377, 228)
 scale = Vector2(8.16, 23.28)
 shape = SubResource("RectangleShape2D_xmad2")
 
@@ -190,7 +220,7 @@ position = Vector2(-33.3691, 0.221417)
 shape = SubResource("RectangleShape2D_1tgic")
 
 [node name="UFRight" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(1819, -347)
+position = Vector2(1818, -329)
 scale = Vector2(4.99999, 1)
 collision_mask = 2
 script = ExtResource("5_echjx")
@@ -198,7 +228,7 @@ target_position = Vector2(1777, 645)
 required_action = "ui_down"
 
 [node name="TransitionRightUF" type="CollisionShape2D" parent="0/TransitionZones/UFRight"]
-position = Vector2(80.7001, 21)
+position = Vector2(135.4, -13)
 scale = Vector2(8.2, 18.52)
 shape = SubResource("RectangleShape2D_1ahjd")
 
@@ -258,7 +288,14 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.05
 
 [node name="Qh3" type="Sprite2D" parent="1"]
+position = Vector2(-306.667, 10.4762)
 texture = ExtResource("5_1tgic")
+
+[node name="Qh4" type="Sprite2D" parent="1"]
+position = Vector2(1817.14, 10.4762)
+texture = ExtResource("5_1tgic")
+region_enabled = true
+region_rect = Rect2(2406.6, -13.4397, 1446.41, 2186.44)
 
 [node name="2" type="CanvasLayer" parent="."]
 layer = 6
@@ -269,6 +306,12 @@ follow_viewport_scale = 1.1
 position = Vector2(0, -18.7879)
 texture = ExtResource("6_1ahjd")
 
+[node name="Qh5" type="Sprite2D" parent="2"]
+position = Vector2(2300, -18.1818)
+texture = ExtResource("6_1ahjd")
+region_enabled = true
+region_rect = Rect2(2795, 0, 1045, 2160)
+
 [node name="3" type="CanvasLayer" parent="."]
 layer = 7
 follow_viewport_enabled = true
@@ -277,6 +320,12 @@ follow_viewport_scale = 1.15
 [node name="Qh5" type="Sprite2D" parent="3"]
 position = Vector2(0, -40.6608)
 texture = ExtResource("7_m6m8n")
+
+[node name="Qh6" type="Sprite2D" parent="3"]
+position = Vector2(2319.13, -40.8696)
+texture = ExtResource("7_m6m8n")
+region_enabled = true
+region_rect = Rect2(2869, 0, 971, 2160)
 
 [node name="4" type="CanvasLayer" parent="."]
 layer = 8
@@ -366,6 +415,11 @@ texture = ExtResource("12_xmad2")
 lifetime = 15.0
 visibility_rect = Rect2(-2000, -100, 4000, 2450)
 process_material = SubResource("ParticleProcessMaterial_xmad2")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_xr5fd")
+autoplay = true
+script = SubResource("GDScript_ssf6e")
 
 [connection signal="body_entered" from="MinigameTrigger" to="." method="_on_minigame_trigger_body_entered"]
 [connection signal="body_entered" from="HallwayTrigger" to="." method="_on_hallway_trigger_body_entered"]
