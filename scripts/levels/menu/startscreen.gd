@@ -11,7 +11,7 @@ func _ready():
 		var s1 = scene1.instantiate()
 		add_child(s1)
 		move_child(s1, 0)  # background at index 0
-	$CanvasLayer.layer = 10  # ensure logo is always in front
+	$CanvasLayer.layer = 100  # ensure logo is always in front
 
 	_start_bobble()
 

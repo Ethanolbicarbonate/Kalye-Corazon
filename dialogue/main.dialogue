@@ -33,19 +33,19 @@ Caleb: "Huh, I wonder who left those there."
 
 ~ follow_cat_exit_choices
 Caleb: "Where will you take me?"
-- Follow further.
-	do DialogueManager.mutated.emit({"mutation": "proceed_to_level2"})
 - Stay.
 	do DialogueManager.mutated.emit({"mutation": "stay_in_level1"})
 	Caleb: "I need to think for a bit."
+- Follow further.
+	do DialogueManager.mutated.emit({"mutation": "proceed_to_level2"})
 => END
 
 
 ~ resist_urge_exit_choices
 Caleb: "I should get going."
-- Leave Queston Hall.
-	do DialogueManager.mutated.emit({"mutation": "proceed_to_level2"})
 - Stay.
 	do DialogueManager.mutated.emit({"mutation": "stay_in_level1"})
 	Caleb: "I need to think for a bit."
+- Leave Queston Hall.
+	do DialogueManager.mutated.emit({"mutation": "proceed_to_level2"})
 => END

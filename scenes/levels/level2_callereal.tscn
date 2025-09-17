@@ -1,20 +1,26 @@
-[gd_scene load_steps=33 format=3 uid="uid://c3cis6klge4bj"]
+[gd_scene load_steps=38 format=3 uid="uid://c3cis6klge4bj"]
 
 [ext_resource type="Script" uid="uid://qyubpgm5iabx" path="res://scripts/levels/Level2_CalleReal/level_2_callereal.gd" id="1_cropf"]
 [ext_resource type="Texture2D" uid="uid://q4scwarsywwo" path="res://assets/sprites/environment/calle_real/sky.png" id="2_oede4"]
 [ext_resource type="Texture2D" uid="uid://dntsuv0l8ryg5" path="res://assets/sprites/environment/calle_real/-2.png" id="3_cropf"]
-[ext_resource type="Texture2D" uid="uid://cbrks1r30imta" path="res://assets/sprites/environment/calle_real/-1.png" id="4_c4jp8"]
 [ext_resource type="PackedScene" uid="uid://br7qkmw53wf1y" path="res://scenes/player/caleb.tscn" id="5_f766k"]
+[ext_resource type="Texture2D" uid="uid://bcxdrokodj6c7" path="res://assets/sprites/environment/calle_real/-1 upd.png" id="6_70ply"]
 [ext_resource type="Script" uid="uid://pwdqtq6jkmhh" path="res://scripts/levels/Level1_QuestonHall/TransitionZone.gd" id="6_d72ua"]
 [ext_resource type="Texture2D" uid="uid://cbys4gftl3au3" path="res://assets/sprites/environment/calle_real/1.png" id="7_70ply"]
 [ext_resource type="PackedScene" uid="uid://hcj5p1abc26k" path="res://scenes/npcs/cat.tscn" id="7_slvls"]
 [ext_resource type="Texture2D" uid="uid://d3i8ar1titoh7" path="res://assets/sprites/environment/calle_real/2.png" id="8_ceyqj"]
 [ext_resource type="Texture2D" uid="uid://dpd357uphcoo1" path="res://assets/sprites/environment/calle_real/3.png" id="9_6k287"]
 [ext_resource type="Texture2D" uid="uid://gk8wr7ldgryg" path="res://assets/sprites/environment/calle_real/4.png" id="10_0sj1b"]
-[ext_resource type="Script" uid="uid://c4qbcvxj5sane" path="res://scripts/crowd/crowd_spawner.gd" id="12_8olc2"]
-[ext_resource type="PackedScene" uid="uid://dtigk3glu13m4" path="res://scenes/crowd/crowd_walker_male.tscn" id="13_jm63v"]
-[ext_resource type="PackedScene" uid="uid://bsat42hm3blb6" path="res://scenes/crowd/crowd_walker_female.tscn" id="14_aecr3"]
+[ext_resource type="Script" uid="uid://cntk6xa8bpuna" path="res://scripts/crowd/car_spawner.gd" id="12_70ply"]
+[ext_resource type="PackedScene" uid="uid://dlfcg5barvt7l" path="res://scenes/crowd/crowd_walker_tric3.tscn" id="12_iu4v1"]
+[ext_resource type="PackedScene" uid="uid://dwrjx7cxarfxs" path="res://scenes/crowd/crowd_walker_tric2.tscn" id="13_c4jp8"]
+[ext_resource type="PackedScene" uid="uid://1q7ea2qned5q" path="res://scenes/crowd/crowd_walker_tric1.tscn" id="13_ceyqj"]
+[ext_resource type="PackedScene" uid="uid://dvgbflholebj1" path="res://scenes/crowd/crowd_walker_tric4.tscn" id="13_ljmqc"]
+[ext_resource type="PackedScene" uid="uid://b3p0lub0vo00a" path="res://scenes/crowd/crowd_walker_jeep3.tscn" id="14_qo4vo"]
+[ext_resource type="PackedScene" uid="uid://bu6rlr7vy7uu8" path="res://scenes/crowd/crowd_walker_jeep1.tscn" id="15_70ply"]
 [ext_resource type="Shader" uid="uid://fwaomjnv67q4" path="res://scenes/effects/blur.gdshader" id="15_bw77a"]
+[ext_resource type="PackedScene" uid="uid://cgd0b1rfvccgj" path="res://scenes/crowd/crowd_walker_jeep4.tscn" id="15_t1o0f"]
+[ext_resource type="PackedScene" uid="uid://ck570qu2c5nrc" path="res://scenes/crowd/crowd_walker_jeep2.tscn" id="16_ceyqj"]
 [ext_resource type="Texture2D" uid="uid://6m2mdrk3p7ww" path="res://assets/sprites/effects/particles/orb_particle.png" id="16_d1mlx"]
 [ext_resource type="Texture2D" uid="uid://bpt112ctewjsv" path="res://assets/sprites/effects/particles/falling_leaves.png" id="17_sgc85"]
 [ext_resource type="AudioStream" uid="uid://djt64k1umb8q2" path="res://assets/bgm/bgm1_FamiliarPlaces.mp3" id="18_c4jp8"]
@@ -39,9 +45,6 @@ size = Vector2(35.678, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr5fd"]
 size = Vector2(20, 65)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oks2v"]
-size = Vector2(222.848, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6esln"]
 shader = ExtResource("15_bw77a")
@@ -115,7 +118,7 @@ layer = 3
 follow_viewport_enabled = true
 
 [node name="Qh2" type="Sprite2D" parent="-1"]
-texture = ExtResource("4_c4jp8")
+texture = ExtResource("6_70ply")
 
 [node name="0" type="CanvasLayer" parent="."]
 layer = 4
@@ -135,7 +138,7 @@ scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
 [node name="Boundaries" type="StaticBody2D" parent="0"]
-collision_layer = 2
+collision_mask = 2
 
 [node name="BoundaryLeft" type="CollisionShape2D" parent="0/Boundaries"]
 position = Vector2(-1917, 144.1)
@@ -150,7 +153,7 @@ shape = SubResource("RectangleShape2D_xmad2")
 [node name="TransitionZones" type="Node" parent="0"]
 
 [node name="GFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(-2006, 553)
+position = Vector2(-2134, 553)
 scale = Vector2(9.32, 149.04)
 collision_mask = 2
 script = ExtResource("6_d72ua")
@@ -176,7 +179,7 @@ scale = Vector2(8.2, 18.52)
 shape = SubResource("RectangleShape2D_1ahjd")
 
 [node name="GFRight" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(1881, 476)
+position = Vector2(2026, 476)
 scale = Vector2(2, 1)
 collision_mask = 2
 script = ExtResource("6_d72ua")
@@ -190,7 +193,7 @@ scale = Vector2(9.8, 11.32)
 shape = SubResource("RectangleShape2D_echjx")
 
 [node name="UFLeft" type="Area2D" parent="0/TransitionZones" groups=["TransitionZones"]]
-position = Vector2(-2375, -342)
+position = Vector2(-2481, -214)
 collision_mask = 2
 script = ExtResource("6_d72ua")
 target_position = Vector2(-1630, 683)
@@ -238,52 +241,105 @@ follow_viewport_scale = 1.08
 position = Vector2(0, 11.1111)
 texture = ExtResource("9_6k287")
 
+[node name="vehicles left" type="CanvasLayer" parent="."]
+layer = 7
+follow_viewport_enabled = true
+follow_viewport_scale = 1.15
+
+[node name="tric3" type="Node2D" parent="vehicles left"]
+position = Vector2(-989.5, 706.957)
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("12_iu4v1")
+min_speed = 800.0
+max_speed = 1000.0
+spawn_direction = "Left"
+min_spawn_time = 5.0
+max_spawn_time = 10.0
+
+[node name="tric4" type="Node2D" parent="vehicles left"]
+position = Vector2(-989.5, 706.957)
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("13_ljmqc")
+min_speed = 600.0
+max_speed = 700.0
+spawn_direction = "Left"
+min_spawn_time = 5.0
+max_spawn_time = 10.0
+
+[node name="jeep3" type="Node2D" parent="vehicles left"]
+position = Vector2(-989.5, 706.957)
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("14_qo4vo")
+min_speed = 1500.0
+max_speed = 2000.0
+spawn_direction = "Left"
+min_spawn_time = 10.0
+max_spawn_time = 20.0
+
+[node name="jeep4" type="Node2D" parent="vehicles left"]
+position = Vector2(-989.5, 706.957)
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("15_t1o0f")
+min_speed = 1500.0
+max_speed = 2000.0
+spawn_direction = "Left"
+min_spawn_time = 10.0
+max_spawn_time = 20.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="vehicles left"]
+color = Color(0.720848, 0.673166, 0.643757, 1)
+
 [node name="4" type="CanvasLayer" parent="."]
 layer = 8
 follow_viewport_enabled = true
 follow_viewport_scale = 1.4
 
 [node name="Qh6" type="Sprite2D" parent="4"]
-position = Vector2(0, 8.57142)
+position = Vector2(0, -55)
 texture = ExtResource("10_0sj1b")
 
-[node name="CrowdFront" type="CanvasLayer" parent="."]
+[node name="vehicles right" type="CanvasLayer" parent="."]
 layer = 11
-visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 2.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="CrowdFront"]
-position = Vector2(0, 973)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrowdFront/StaticBody2D"]
-scale = Vector2(26.1, 1)
-shape = SubResource("RectangleShape2D_oks2v")
-
-[node name="CrowdSpawner" type="Node2D" parent="CrowdFront"]
+[node name="tric2" type="Node2D" parent="vehicles right"]
 position = Vector2(-989.5, 764.5)
-script = ExtResource("12_8olc2")
-crowd_walker_scene = ExtResource("13_jm63v")
-min_speed = 300.0
-max_speed = 400.0
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("13_c4jp8")
+min_speed = 800.0
+max_speed = 1000.0
+min_spawn_time = 5.0
+max_spawn_time = 10.0
 
-[node name="Timer" type="Timer" parent="CrowdFront/CrowdSpawner"]
-wait_time = 5.758
-autostart = true
-
-[node name="CrowdSpawner2" type="Node2D" parent="CrowdFront"]
-modulate = Color(0.314316, 0.314316, 0.314316, 1)
+[node name="tric1" type="Node2D" parent="vehicles right"]
 position = Vector2(-989.5, 764.5)
-script = ExtResource("12_8olc2")
-crowd_walker_scene = ExtResource("14_aecr3")
-min_speed = 300.0
-max_speed = 400.0
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("13_ceyqj")
+min_speed = 600.0
+max_speed = 700.0
+min_spawn_time = 5.0
+max_spawn_time = 10.0
 
-[node name="Timer" type="Timer" parent="CrowdFront/CrowdSpawner2"]
-wait_time = 3.759
-autostart = true
+[node name="jeep1" type="Node2D" parent="vehicles right"]
+position = Vector2(-989.5, 764.5)
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("15_70ply")
+min_speed = 1500.0
+max_speed = 2000.0
+min_spawn_time = 10.0
+max_spawn_time = 20.0
 
-[node name="CanvasModulate" type="CanvasModulate" parent="CrowdFront"]
+[node name="jeep2" type="Node2D" parent="vehicles right"]
+position = Vector2(-989.5, 764.5)
+script = ExtResource("12_70ply")
+crowd_walker_scene = ExtResource("16_ceyqj")
+min_speed = 1500.0
+max_speed = 2000.0
+min_spawn_time = 10.0
+max_spawn_time = 20.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="vehicles right"]
 color = Color(0.57377, 0.522104, 0.490105, 1)
 
 [node name="BackBlur" type="CanvasLayer" parent="."]
@@ -328,7 +384,7 @@ lifetime = 15.0
 visibility_rect = Rect2(-2000, -100, 4000, 2450)
 process_material = SubResource("ParticleProcessMaterial_xmad2")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_c4jp8")
 autoplay = true
 
