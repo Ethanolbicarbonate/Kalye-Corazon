@@ -8,3 +8,9 @@ var persevere_minigame_dialogue_shown: bool = false
 
 var cat_is_following_globally: bool = false
 var level_1_story_exit_completed: bool = false
+
+# NEW: Track if cat dialogue has been encountered
+var cat_dialogue_completed: bool = false
+
+# NEW: Track which level we're returning from
+var returning_from_level: String = ""

@@ -183,7 +183,7 @@ position = Vector2(2026, 476)
 scale = Vector2(2, 1)
 collision_mask = 2
 script = ExtResource("6_d72ua")
-target_position = Vector2(-1514, 667)
+target_position = Vector2(-1764, 689)
 required_action = "ui_right"
 target_scene_path = "uid://20l8s8unujh4"
 

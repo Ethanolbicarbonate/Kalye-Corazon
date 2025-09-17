@@ -172,10 +172,6 @@ position = Vector2(-28, 794)
 scale = Vector2(49.7996, 1.67604)
 shape = SubResource("RectangleShape2D_62nti")
 
-[node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-511, -179)
-collision_mask = 3
-
 [node name="Boundaries" type="StaticBody2D" parent="0"]
 position = Vector2(-445, 24)
 collision_layer = 2
@@ -267,6 +263,10 @@ monitoring = false
 position = Vector2(-483, -48)
 scale = Vector2(79.9444, 31.1598)
 shape = SubResource("RectangleShape2D_wn6fv")
+
+[node name="player" parent="0" instance=ExtResource("4_echjx")]
+position = Vector2(465, 622)
+collision_mask = 3
 
 [node name="1" type="CanvasLayer" parent="."]
 layer = 5
@@ -400,5 +400,3 @@ script = SubResource("GDScript_ssf6e")
 [connection signal="body_entered" from="0/TransitionZones/UFLeft" to="0/TransitionZones/UFLeft" method="_on_body_entered"]
 [connection signal="body_exited" from="0/TransitionZones/UFLeft" to="0/TransitionZones/UFLeft" method="_on_body_exited"]
 [connection signal="body_entered" from="0/LevelExitTrigger" to="." method="_on_level_exit_trigger_body_entered"]
-
-[editable path="0/player"]
