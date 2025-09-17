@@ -1,5 +1,3 @@
-# HandheldCamera.gd
-
 extends Camera2D
 
 # Adjust these values in the Inspector to change the feel of the shake.

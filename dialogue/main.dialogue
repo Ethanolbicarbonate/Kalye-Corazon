@@ -65,3 +65,57 @@ Caleb: "Is that a cat?"
 ~ cant_go_there
 Caleb: "Nothing to see here."
 => END
+
+# New Dialogue for Level 2: Calle Real (Caleb and Eveready only)
+
+~ calle_real_initial_entry
+Caleb: "Woah... it's a lot. The noise, the people... I can barely think."
+Eveready: "Keep your head up, kid. Or you'll get trampled."
+=> END
+
+~ calle_real_street_vehicles
+Caleb: "Tricycles, jeepneys... they're everywhere. Zipping past, horns blaring."
+Caleb: "It's hard to even cross the street with all this movement without being overwhelmed."
+Eveready: "Well, what did you expect?"
+Eveready: "This is real life, not a quiet library. Pay attention."
+Caleb: "I am paying attention..."
+Caleb: "to how much my head hurts."
+=> END
+
+~ calle_real_seeking_height
+Caleb: "There's a staircase over there..."
+Caleb: "maybe a higher vantage point would help."
+Caleb: "I need to get away from this immediate rush for a moment."
+Eveready: "Running away won't solve anything,"
+Eveready: "but fine. Go on,"
+Eveready: "see if a new view makes your problems disappear."
+=> END
+
+~ calle_real_balcony_arrival
+Caleb: "Ah... a little relief up here."
+Caleb: "The air feels a bit lighter, and I can see everything from above."
+Caleb: "Still chaotic, but... somehow less overwhelming."
+Eveready: "It's still the same chaos, just further away."
+Eveready: "Don't mistake distance for peace."
+=> END
+
+~ calle_real_balcony_reflection
+Caleb: "From here, the street looks almost like a painting."
+Caleb: "All those tiny figures, moving with purpose..."
+Caleb: "Each one with their own story."
+Caleb: "It's still bustling, but I can appreciate the energy now."
+Caleb: "Not just the noise. A little."
+Eveready: "Just 'a little.' Don't get lost in poetic thoughts."
+Eveready: "The real challenges are still down there."
+Caleb: "I know."
+Caleb: "But seeing it from here... it's a different kind of pressure."
+=> END
+
+~ calle_real_prepare_descend
+Eveready: "So, had enough of your 'different kind of pressure'?"
+Eveready: "Time to get back to it."
+Caleb: "Yeah, I guess."
+Caleb: "It didn't solve everything, but it helped clear my head a bit."
+Eveready: "Good."
+Eveready: "Now let's see if that 'clarity' lasts when you're back in the thick of it."
+=> END

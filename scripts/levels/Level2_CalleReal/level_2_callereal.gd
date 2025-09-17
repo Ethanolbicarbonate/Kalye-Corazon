@@ -10,6 +10,9 @@ var fade_time := 2.0  # seconds for fade-in/out
 var player_instance: CharacterBody2D = null
 var cat_instance: CharacterBody2D = null
 
+@onready var balloon = preload("res://dialogue/balloon.tscn").instantiate()
+var dialogue_res = preload("res://dialogue/main.dialogue")
+
 func _ready():
 	print("DEBUG: Entered Level 2 (Calle Real)!")
 	
@@ -36,7 +39,7 @@ func _ready():
 			camera.reset_smoothing()
 		GameState.player_return_position = null
 	else:
-		player_instance.global_position = Vector2(1394, 683) 
+		player_instance.global_position = Vector2(1394, 683)
 		player_instance.set_input_enabled(true)
 	
 	# --- CAT SPAWNING LOGIC ---
@@ -62,6 +65,10 @@ func _ready():
 	else:
 		print("DEBUG: Cat is NOT following in Level 2.")
 	
+	# --- ADD THE DIALOGUE BALLOON TO THE SCENE TREE ---
+	add_child(balloon) # <--- THIS IS THE MISSING LINE!
+	DialogueManager.mutated.connect(_on_dialogue_mutated) # Connect this here as well for consistency
+
 	# --- Transition Zones ---
 	call_deferred("_setup_transition_connections")
 	
@@ -99,3 +106,12 @@ func _exit_tree():
 			.set_ease(Tween.EASE_IN_OUT)
 		t.finished.connect(func():
 			bgm.stop())
+			
+func start_dialogue_balloon_from_trigger(resource: DialogueResource, title: String):
+	balloon.show()
+	balloon.start(resource, title)
+
+# You might also want to add an _on_dialogue_mutated function if you handle mutations in Level 2
+func _on_dialogue_mutated(data: Dictionary):
+	# Handle any specific mutations for Level 2 here
+	print("DEBUG: Level 2 Dialogue mutated: ", data)

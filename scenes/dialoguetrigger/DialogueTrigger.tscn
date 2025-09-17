@@ -12,5 +12,3 @@ script = ExtResource("1_eotr7")
 position = Vector2(-2, 4)
 scale = Vector2(4.56785, 22.7835)
 shape = SubResource("RectangleShape2D_5bk2k")
-
-[node name="Camera2D" type="Camera2D" parent="."]

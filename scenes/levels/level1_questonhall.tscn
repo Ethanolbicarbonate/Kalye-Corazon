@@ -267,7 +267,7 @@ scale = Vector2(79.9444, 31.1598)
 shape = SubResource("RectangleShape2D_wn6fv")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(-511, -212)
+position = Vector2(404, 677)
 collision_mask = 3
 
 [node name="DialogueTrigger" parent="0" instance=ExtResource("8_oks2v")]

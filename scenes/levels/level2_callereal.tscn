@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cbys4gftl3au3" path="res://assets/sprites/environment/calle_real/1.png" id="7_70ply"]
 [ext_resource type="PackedScene" uid="uid://hcj5p1abc26k" path="res://scenes/npcs/cat.tscn" id="7_slvls"]
 [ext_resource type="Texture2D" uid="uid://d3i8ar1titoh7" path="res://assets/sprites/environment/calle_real/2.png" id="8_ceyqj"]
-[ext_resource type="Script" uid="uid://fx4lchp5d7s8" path="res://scripts/player/dialogue_trigger.gd" id="8_ljmqc"]
+[ext_resource type="PackedScene" uid="uid://dg3g33tcebdod" path="res://scenes/dialoguetrigger/DialogueTrigger.tscn" id="8_qo4vo"]
 [ext_resource type="Texture2D" uid="uid://dpd357uphcoo1" path="res://assets/sprites/environment/calle_real/3.png" id="9_6k287"]
+[ext_resource type="Resource" uid="uid://bvd3r6x8exo37" path="res://dialogue/main.dialogue" id="9_qo4vo"]
 [ext_resource type="Texture2D" uid="uid://gk8wr7ldgryg" path="res://assets/sprites/environment/calle_real/4.png" id="10_0sj1b"]
 [ext_resource type="Script" uid="uid://cntk6xa8bpuna" path="res://scripts/crowd/car_spawner.gd" id="12_70ply"]
 [ext_resource type="PackedScene" uid="uid://dlfcg5barvt7l" path="res://scenes/crowd/crowd_walker_tric3.tscn" id="12_iu4v1"]
@@ -46,8 +47,6 @@ size = Vector2(35.678, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr5fd"]
 size = Vector2(20, 65)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iu4v1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6esln"]
 shader = ExtResource("15_bw77a")
@@ -218,13 +217,51 @@ position = Vector2(-106, -152)
 scale = Vector2(217.36, 1)
 shape = SubResource("RectangleShape2D_xr5fd")
 
-[node name="DialogueTrigger" type="Area2D" parent="0"]
-visible = false
-script = ExtResource("8_ljmqc")
+[node name="DialogueTrigger" parent="0" instance=ExtResource("8_qo4vo")]
+position = Vector2(1192, 591)
+dialogue_resource = ExtResource("9_qo4vo")
+dialogue_title = "calle_real_initial_entry"
+unique_trigger_id = "calle_real_initial_entry"
+freeze_player = false
+required_entry_direction = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="0/DialogueTrigger"]
-scale = Vector2(4.56785, 22.7835)
-shape = SubResource("RectangleShape2D_iu4v1")
+[node name="DialogueTrigger2" parent="0" instance=ExtResource("8_qo4vo")]
+position = Vector2(429, 591)
+dialogue_resource = ExtResource("9_qo4vo")
+dialogue_title = "calle_real_street_vehicles"
+unique_trigger_id = "calle_real_street_vehicles"
+freeze_player = false
+required_entry_direction = 2
+
+[node name="DialogueTrigger3" parent="0" instance=ExtResource("8_qo4vo")]
+position = Vector2(-833, 591)
+dialogue_resource = ExtResource("9_qo4vo")
+dialogue_title = "calle_real_seeking_height"
+unique_trigger_id = "calle_real_seeking_height"
+required_entry_direction = 2
+
+[node name="DialogueTrigger4" parent="0" instance=ExtResource("8_qo4vo")]
+position = Vector2(-1222, 13)
+dialogue_resource = ExtResource("9_qo4vo")
+dialogue_title = "calle_real_balcony_arrival"
+unique_trigger_id = "calle_real_balcony_arrival"
+freeze_player = false
+required_entry_direction = 1
+
+[node name="DialogueTrigger5" parent="0" instance=ExtResource("8_qo4vo")]
+position = Vector2(618, 13)
+dialogue_resource = ExtResource("9_qo4vo")
+dialogue_title = "calle_real_balcony_reflection"
+unique_trigger_id = "calle_real_balcony_reflection"
+freeze_player = false
+required_entry_direction = 1
+
+[node name="DialogueTrigger6" parent="0" instance=ExtResource("8_qo4vo")]
+position = Vector2(-783, 13)
+dialogue_resource = ExtResource("9_qo4vo")
+dialogue_title = "calle_real_prepare_descend"
+unique_trigger_id = "calle_real_prepare_descend"
+required_entry_direction = 2
 
 [node name="1" type="CanvasLayer" parent="."]
 layer = 5
