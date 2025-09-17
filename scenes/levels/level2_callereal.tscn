@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://qyubpgm5iabx" path="res://scripts/levels/Level2_CalleReal/level_2_callereal.gd" id="1_cropf"]
 [ext_resource type="Texture2D" uid="uid://q4scwarsywwo" path="res://assets/sprites/environment/calle_real/sky.png" id="2_oede4"]
 [ext_resource type="Texture2D" uid="uid://dntsuv0l8ryg5" path="res://assets/sprites/environment/calle_real/-2.png" id="3_cropf"]
-[ext_resource type="Texture2D" uid="uid://cbrks1r30imta" path="res://assets/sprites/environment/calle_real/-1.png" id="4_c4jp8"]
 [ext_resource type="PackedScene" uid="uid://br7qkmw53wf1y" path="res://scenes/player/caleb.tscn" id="5_f766k"]
+[ext_resource type="Texture2D" uid="uid://binlj1h7g1kxp" path="res://assets/sprites/environment/calle_real/-1 upd.png" id="6_cropf"]
 [ext_resource type="Script" uid="uid://pwdqtq6jkmhh" path="res://scripts/levels/Level1_QuestonHall/TransitionZone.gd" id="6_d72ua"]
 [ext_resource type="Texture2D" uid="uid://cbys4gftl3au3" path="res://assets/sprites/environment/calle_real/1.png" id="7_70ply"]
 [ext_resource type="PackedScene" uid="uid://hcj5p1abc26k" path="res://scenes/npcs/cat.tscn" id="7_slvls"]
@@ -114,7 +114,7 @@ layer = 3
 follow_viewport_enabled = true
 
 [node name="Qh2" type="Sprite2D" parent="-1"]
-texture = ExtResource("4_c4jp8")
+texture = ExtResource("6_cropf")
 
 [node name="0" type="CanvasLayer" parent="."]
 layer = 4
