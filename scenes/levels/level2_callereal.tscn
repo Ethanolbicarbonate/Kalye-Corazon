@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c3cis6klge4bj"]
+[gd_scene load_steps=40 format=3 uid="uid://c3cis6klge4bj"]
 
 [ext_resource type="Script" uid="uid://qyubpgm5iabx" path="res://scripts/levels/Level2_CalleReal/level_2_callereal.gd" id="1_cropf"]
 [ext_resource type="Texture2D" uid="uid://q4scwarsywwo" path="res://assets/sprites/environment/calle_real/sky.png" id="2_oede4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cbys4gftl3au3" path="res://assets/sprites/environment/calle_real/1.png" id="7_70ply"]
 [ext_resource type="PackedScene" uid="uid://hcj5p1abc26k" path="res://scenes/npcs/cat.tscn" id="7_slvls"]
 [ext_resource type="Texture2D" uid="uid://d3i8ar1titoh7" path="res://assets/sprites/environment/calle_real/2.png" id="8_ceyqj"]
+[ext_resource type="Script" uid="uid://fx4lchp5d7s8" path="res://scripts/player/dialogue_trigger.gd" id="8_ljmqc"]
 [ext_resource type="Texture2D" uid="uid://dpd357uphcoo1" path="res://assets/sprites/environment/calle_real/3.png" id="9_6k287"]
 [ext_resource type="Texture2D" uid="uid://gk8wr7ldgryg" path="res://assets/sprites/environment/calle_real/4.png" id="10_0sj1b"]
 [ext_resource type="Script" uid="uid://cntk6xa8bpuna" path="res://scripts/crowd/car_spawner.gd" id="12_70ply"]
@@ -45,6 +46,8 @@ size = Vector2(35.678, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr5fd"]
 size = Vector2(20, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iu4v1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6esln"]
 shader = ExtResource("15_bw77a")
@@ -214,6 +217,14 @@ collision_mask = 4
 position = Vector2(-106, -152)
 scale = Vector2(217.36, 1)
 shape = SubResource("RectangleShape2D_xr5fd")
+
+[node name="DialogueTrigger" type="Area2D" parent="0"]
+visible = false
+script = ExtResource("8_ljmqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="0/DialogueTrigger"]
+scale = Vector2(4.56785, 22.7835)
+shape = SubResource("RectangleShape2D_iu4v1")
 
 [node name="1" type="CanvasLayer" parent="."]
 layer = 5

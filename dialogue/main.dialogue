@@ -7,7 +7,7 @@ Caleb: "I just need... a break."
 
 
 ~ cat_encounter
-Caleb: "A cat? Here? What is this cat up to..."
+Caleb: "What is this cat up to..."
 - Follow the cat.
 	do DialogueManager.mutated.emit({"mutation": "follow_cat"})
 	Mango: "Meow"
@@ -48,4 +48,20 @@ Caleb: "I should get going."
 	Caleb: "I need to think for a bit."
 - Leave Queston Hall.
 	do DialogueManager.mutated.emit({"mutation": "proceed_to_level2"})
+=> END
+
+~ go_down_queston_hall
+Caleb: "Maybe I should head downstairs to clear my mind."
+=> END
+
+~ go_up_queston_hall
+Caleb: "Maybe I should head back upstairs."
+=> END
+
+~ cat_first_see
+Caleb: "Is that a cat?"
+=> END
+
+~ cant_go_there
+Caleb: "Nothing to see here."
 => END

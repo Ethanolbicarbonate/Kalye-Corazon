@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://20l8s8unujh4"]
+[gd_scene load_steps=39 format=3 uid="uid://20l8s8unujh4"]
 
 [ext_resource type="Script" uid="uid://b273fa3c4vnys" path="res://scripts/levels/Level1_QuestonHall/level_1_questonhall.gd" id="1_1tgic"]
 [ext_resource type="Texture2D" uid="uid://c6wvj7fcocsmy" path="res://assets/sprites/environment/queston_hall/qh sky.png" id="1_xqwct"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://hcj5p1abc26k" path="res://scenes/npcs/cat.tscn" id="7_1ahjd"]
 [ext_resource type="Texture2D" uid="uid://b78lpyj2df0sq" path="res://assets/sprites/environment/queston_hall/qh 5.png" id="7_m6m8n"]
 [ext_resource type="Texture2D" uid="uid://bpj28inu41tpj" path="res://assets/sprites/environment/queston_hall/qh 6.png" id="8_du45u"]
+[ext_resource type="PackedScene" uid="uid://dg3g33tcebdod" path="res://scenes/dialoguetrigger/DialogueTrigger.tscn" id="8_oks2v"]
 [ext_resource type="Texture2D" uid="uid://434yayhvucn" path="res://assets/sprites/environment/queston_hall/1 upd.png" id="8_ssf6e"]
+[ext_resource type="Resource" uid="uid://bvd3r6x8exo37" path="res://dialogue/main.dialogue" id="9_wn6fv"]
 [ext_resource type="Shader" uid="uid://fwaomjnv67q4" path="res://scenes/effects/blur.gdshader" id="10_ssf6e"]
 [ext_resource type="Texture2D" uid="uid://6m2mdrk3p7ww" path="res://assets/sprites/effects/particles/orb_particle.png" id="11_da0tw"]
 [ext_resource type="Script" uid="uid://c4qbcvxj5sane" path="res://scripts/crowd/crowd_spawner.gd" id="12_1ahjd"]
@@ -265,8 +267,41 @@ scale = Vector2(79.9444, 31.1598)
 shape = SubResource("RectangleShape2D_wn6fv")
 
 [node name="player" parent="0" instance=ExtResource("4_echjx")]
-position = Vector2(465, 622)
+position = Vector2(-511, -212)
 collision_mask = 3
+
+[node name="DialogueTrigger" parent="0" instance=ExtResource("8_oks2v")]
+position = Vector2(1658, -288)
+dialogue_resource = ExtResource("9_wn6fv")
+dialogue_title = "go_down_queston_hall"
+unique_trigger_id = "go_down_queston_hall"
+trigger_once = false
+freeze_player = false
+required_entry_direction = 1
+
+[node name="DialogueTrigger4" parent="0" instance=ExtResource("8_oks2v")]
+position = Vector2(-1718, -288)
+dialogue_resource = ExtResource("9_wn6fv")
+dialogue_title = "cant_go_there"
+unique_trigger_id = "cant_go_there"
+trigger_once = false
+freeze_player = false
+required_entry_direction = 2
+
+[node name="DialogueTrigger2" parent="0" instance=ExtResource("8_oks2v")]
+position = Vector2(930, 602)
+dialogue_resource = ExtResource("9_wn6fv")
+dialogue_title = "cat_first_see"
+unique_trigger_id = "cat_first_see"
+freeze_player = false
+
+[node name="DialogueTrigger3" parent="0" instance=ExtResource("8_oks2v")]
+position = Vector2(1653, 602)
+dialogue_resource = ExtResource("9_wn6fv")
+dialogue_title = "go_up_queston_hall"
+unique_trigger_id = "go_up_queston_hall"
+freeze_player = false
+required_entry_direction = 1
 
 [node name="1" type="CanvasLayer" parent="."]
 layer = 5

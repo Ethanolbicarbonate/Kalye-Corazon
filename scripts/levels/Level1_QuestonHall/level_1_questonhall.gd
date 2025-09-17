@@ -178,3 +178,7 @@ func _on_minigame_completed():
 	minigame_completed = true
 	$MinigameTrigger.get_child(0).set_disabled(true)
 	player.set_input_enabled(true)
+	
+func start_dialogue_balloon_from_trigger(resource: DialogueResource, title: String):
+	balloon.show()
+	balloon.start(resource, title)
